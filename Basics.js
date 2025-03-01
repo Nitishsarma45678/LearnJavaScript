@@ -46,3 +46,12 @@ let inputString = prompt("Enter a String: ");
 let reversedString = inputString.split("").reverse().join("");
 
 console.log(`The reversed string : ${reversedString}`)
+
+
+
+// 6. Check for Palindrome
+// Write a program to check if a given string is a palindrome. For example:
+
+// Input: "madam" → Output: Yes
+// Input: "hello" → Output: No
+
