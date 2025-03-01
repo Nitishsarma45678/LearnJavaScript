@@ -44,3 +44,35 @@ let s = new Set(array);
 let array1 = [...s]
 
 console.log(array1);
+
+
+
+// 3.Find the sum of all elements in an array
+
+// Input: [10, 20, 30]
+// Output: 60
+
+let ar = [10 , 20, 30];
+
+let sum = 0;
+
+for (i =0 ; i< arr.length ; i ++){
+    sum+= ar[i]
+}
+console.log(sum)
+
+
+
+// 4. Find the largest element in an array
+
+// Input: [5, 1, 9, 3]
+// Output: 9
+
+
+function largestElement(array){
+    return Math.max(...array)
+}
+const number =  [5, 1, 9, 3] ;
+const result = largestElement(number);
+
+console.log(`Largest element: ${result}`);
