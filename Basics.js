@@ -36,3 +36,11 @@ const largeElement = Math.max(a,b,c);
 
 console.log(`Largest no will be :${largeElement}`);
 
+
+
+
+// 5. Reverse a String
+// Write a program to reverse a string. For example, "hello" should become "olleh".
+
+let inputString = prompt("Enter a String: ");
+let reversedString = inputString.split
