@@ -153,3 +153,12 @@ let k = 2;
 
 
 console.log(rotateAnArray(inputArray , k));
+
+
+
+
+// Find the second largest element in an array
+
+// Input: [10, 5, 8, 20]
+// Output: 10
+
