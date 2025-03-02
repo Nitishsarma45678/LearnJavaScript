@@ -162,3 +162,24 @@ console.log(rotateAnArray(inputArray , k));
 // Input: [10, 5, 8, 20]
 // Output: 10
 
+function getSecondLargest(arr) {
+    let n = arr.length;
+
+    // Sort the array in ascending order
+    arr.sort((a, b) => a - b);
+
+    // Start from the second last element as the last is the largest
+    for (let i = n - 2; i >= 0; i--) {
+        // Return the first element which is not equal to the largest
+        if (arr[i] !== arr[n - 1]) {
+            return arr[i];
+        }
+    }
+
+    // If no second largest element exists, return -1
+    return -1;
+}
+
+// Apply the function
+let arrayy = [10, 5, 8, 20];
+console.log(getSecondLargest(arrayy)); // Output: 10
