@@ -9,3 +9,42 @@ function sumString(arr) {
 }
 
 console.log(sumString(stringArray));
+
+
+
+
+//Create using new Keyword (Constructor)
+
+let a = new Array(10 , 20 , 30)
+
+console.log(a)
+
+
+
+//Modifying the Array Elements
+
+let arr = [2 , 3 , 7 , 9]
+console.log(arr)
+
+arr[0] = 67
+console.log(arr)
+
+
+
+.push() adds an element to the end of an array 
+
+let array = ["Sherlock" , "John" , 8 , "Hudson"];
+array.push("Greg");
+console.log(array);
+
+
+Object
+
+let object = 
+{
+    Name : 'king',
+    Roll : '5439',
+    State : 'Arunachal'
+}
+
+console.log(object)
