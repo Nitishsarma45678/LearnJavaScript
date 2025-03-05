@@ -97,3 +97,13 @@ let rjaArray = [2,4,5,3,1];
 rjaArray.length = 2;                // Decreases by 2
 
 console.log(rjaArray);
+
+
+// .concat()   combines two arrays together 
+
+let ak = ["2" , "3" , "4"];
+let bk = ["raj" , "kaj", 54];
+
+let combined = ak.concat(bk);
+
+console.log(combined);
