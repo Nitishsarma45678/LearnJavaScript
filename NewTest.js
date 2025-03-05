@@ -83,3 +83,17 @@ let what = ["Sherlock" , "John" , 8 , "Hudson"];
 
 what.splice(2,3);
 console.log(what);
+
+
+// Increase and Decrease the Array Length
+
+let kajArray = [2,4,5,3,1];
+kajArray.length = 10;           //increase by 10 
+
+console.log(kajArray);
+
+
+let rjaArray = [2,4,5,3,1];
+rjaArray.length = 2;                // Decreases by 2
+
+console.log(rjaArray);
