@@ -180,6 +180,20 @@ function getSecondLargest(arr) {
     return -1;
 }
 
-// Apply the function
-let arrayy = [10, 5, 8, 20];
-console.log(getSecondLargest(arrayy)); // Output: 10
+
+//Reverse an Array without using .reverse() method 
+
+let AnArray = [2, 7, 9, 3, 5, 1];
+
+function reverseArray(arr){
+    let reversed = [];
+    for (let i = arr.length - 1 ; i>=0 ; i--){
+        reversed.push(arr[i]);
+    }
+    return reversed;
+}
+
+let reversed  =  reverseArray(AnArray);
+
+console.log("Original Array : ", AnArray);
+console.log("Reversed array : ", reversed);
