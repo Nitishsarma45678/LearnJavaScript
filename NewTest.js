@@ -66,3 +66,20 @@ let reversed  =  reverseArray(AnArray);
 
 console.log("Original Array : ", AnArray);
 console.log("Reversed array : ", reversed);
+
+
+//.unshift()  adds an element to the beginning of the array
+
+
+let neja = ["Sherlock" , "John" , 8 , "Hudson"];
+
+neja.unshift("Greg");
+console.log(neja);
+
+
+
+//.splice() removes elements using index value
+let what = ["Sherlock" , "John" , 8 , "Hudson"];
+
+what.splice(2,3);
+console.log(what);
