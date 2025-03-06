@@ -104,6 +104,17 @@ console.log(rjaArray);
 let ak = ["2" , "3" , "4"];
 let bk = ["raj" , "kaj", 54];
 
-let combined = ak.concat(bk);
+// let combined = ak.concat(bk);
 
-console.log(combined);
+// console.log(combined);
+
+
+
+
+//.toString()   conversion of an Array to String 
+
+let dk = [3 , 4, 5, 6 , 9]
+
+console.log(dk.toString());
+
+console.log(typeof(dk));  // typeof()   used to check the type of an Array , returns Object.
