@@ -148,3 +148,29 @@ let g = "anagram"
 let t = "nagaram"
 
 console.log(isSame(s,t));
+
+
+
+
+
+
+
+//------------------------------------------------------    Strings     ---------------------------------------------------------------------//
+
+
+// Declare a string using two techniques , first the as usual , 2nd -- using constructor.
+
+let str = "hakirlar"
+
+let str2 = new String("Gakirle")
+
+console.log(str,str2);
+
+
+
+//Template Literals (String Interpolation)
+
+let newStr = "JS"
+let comStr = `Life's tough , but ${newStr} is even tougher`;
+
+console.log(comStr);
