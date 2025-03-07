@@ -118,3 +118,33 @@ let dk = [3 , 4, 5, 6 , 9]
 console.log(dk.toString());
 
 console.log(typeof(dk));  // typeof()   used to check the type of an Array , returns Object.
+
+
+
+
+let testArray = [1,2,3,1]
+
+let s = new Set(testArray)
+
+if( s.size != testArray.length){
+    console.log(true);
+}
+else{
+    console.log(false);
+}
+
+
+
+
+function isSame(g,t){
+    if (g.length != t.length){
+        return false;
+    }
+    return g.split('').sort().join('') === t.split('').sort().join('');
+
+}
+
+let g = "anagram"
+let t = "nagaram"
+
+console.log(isSame(s,t));
