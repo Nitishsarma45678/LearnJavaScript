@@ -104,9 +104,9 @@ console.log(rjaArray);
 let ak = ["2" , "3" , "4"];
 let bk = ["raj" , "kaj", 54];
 
-// let combined = ak.concat(bk);
+let combined = ak.concat(bk);
 
-// console.log(combined);
+console.log(combined);
 
 
 
@@ -191,3 +191,9 @@ console.log(multiStr);
  let strLen = "Kiabal" ;
 
  console.log(strLen.length);
+
+
+ //concat two strings 
+
+ let c = multiStr + strLen ;
+ console.log(c);
