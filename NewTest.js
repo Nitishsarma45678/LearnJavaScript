@@ -174,3 +174,20 @@ let newStr = "JS"
 let comStr = `Life's tough , but ${newStr} is even tougher`;
 
 console.log(comStr);
+
+
+//Multiline String 
+
+let multiStr = `
+This is 
+what JS is ,
+Tough and yet intresting 
+kind of love and hate relationship you can have.`
+
+console.log(multiStr);
+
+
+//Length of String 
+ let strLen = "Kiabal" ;
+
+ console.log(strLen.length);
