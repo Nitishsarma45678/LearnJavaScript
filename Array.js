@@ -157,6 +157,25 @@ console.log(rotateAnArray(inputArray , k));
 
 
 
+// Sorting An Array 
+
+// Simple sorting in case of the array is containing strings -
+
+let unsortArr = ["zomato" , "bigbasket" , "zepto" , "swiggy" , "blinkit"]
+
+console.log(unsortArr.sort());
+
+
+//As .sort() converts the array values to strings and compares there unicode values for sorting, it becomes a problem for sorting numeric values so we can do ---
+
+let asArr = [2,3,10,5,32,7,8,1,90,45,823]
+console.log(asArr.sort((a , b) => a - b))
+
+
+
+
+
+
 // Find the second largest element in an array
 
 // Input: [10, 5, 8, 20]
@@ -197,6 +216,8 @@ let reversed  =  reverseArray(AnArray);
 
 console.log("Original Array : ", AnArray);
 console.log("Reversed array : ", reversed);
+
+
 
 
 
