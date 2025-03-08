@@ -165,13 +165,23 @@ let unsortArr = ["zomato" , "bigbasket" , "zepto" , "swiggy" , "blinkit"]
 
 console.log(unsortArr.sort());
 
-
 //As .sort() converts the array values to strings and compares there unicode values for sorting, it becomes a problem for sorting numeric values so we can do ---
 
 let asArr = [2,3,10,5,32,7,8,1,90,45,823]
 console.log(asArr.sort((a , b) => a - b))
 
 //for descending order .sort((a,b) => b - a)
+
+
+
+
+//sort in reverse order
+let a = ["JS", "HTML", "CSS"];
+console.log(a);
+a.sort((x, y) => x.localeCompare(y))
+console.log(a);
+
+console.log(a.sort().reverse()) //can be done like this also
 
 
 
@@ -185,12 +195,9 @@ console.log(asArr.sort((a , b) => a - b))
 function getSecondLargest(arr) {
     let n = arr.length;
 
-    // Sort the array in ascending order
     arr.sort((a, b) => a - b);
-
-    // Start from the second last element as the last is the largest
+ 
     for (let i = n - 2; i >= 0; i--) {
-        // Return the first element which is not equal to the largest
         if (arr[i] !== arr[n - 1]) {
             return arr[i];
         }
