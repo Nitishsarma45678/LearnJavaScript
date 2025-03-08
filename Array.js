@@ -171,6 +171,7 @@ console.log(unsortArr.sort());
 let asArr = [2,3,10,5,32,7,8,1,90,45,823]
 console.log(asArr.sort((a , b) => a - b))
 
+//for descending order .sort((a,b) => b - a)
 
 
 
