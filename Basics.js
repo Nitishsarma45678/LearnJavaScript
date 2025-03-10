@@ -59,6 +59,10 @@ console.log(findout);
 
 
 
+//imp note : 
+// 1. Variables that are created inside a function are local variables, and local variables can only be referred to by the code within the function.
+// 2. Variables created outside of functions are global variables, and the code in all functions has access to all global variables.
+    
 
 
 
