@@ -62,7 +62,23 @@ console.log(findout);
 //imp note : 
 // 1. Variables that are created inside a function are local variables, and local variables can only be referred to by the code within the function.
 // 2. Variables created outside of functions are global variables, and the code in all functions has access to all global variables.
-    
+
+
+
+
+// JavaScript Function Call 
+
+
+function product(a, b) {
+    return a * b;
+}
+
+// Calling product() function
+let result23 = product.call(this, 20, 5);
+
+console.log(result);
+
+
 
 
 
