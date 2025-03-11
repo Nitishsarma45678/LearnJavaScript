@@ -56,3 +56,5 @@ let tryArr = [1 , 2 , 3 , 4]
 let findout = Array.isArray(tryArr);   //using  Array.isArray method.
 
 console.log(findout);
+
+
