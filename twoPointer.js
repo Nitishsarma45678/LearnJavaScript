@@ -24,3 +24,34 @@ let array = [2, 3, 4, 5, 6, 7, 8]
 let target = 9 ;
 
 console.log(twoSumArray(array , target));
+
+
+
+
+// Another approach (Works on both unsorted and sorted arrays.)
+// But Inefficient for Larger Arrays
+
+function twoSum(arr , target){
+    let n = arr.length;
+
+    for (let i = 0 ; i < n ; i++){   //interate through each element
+        
+        for(let j = i + 1 ; j < n ; j++ ){     //Check every other element arr[j] that comes after arr[i]
+
+            if (arr[i] + arr[j] === target){
+                return true;
+            }
+
+        }
+    }
+    return false;
+}
+
+let arr = [0, -1, 2, -3, 1];
+let target1 = -2;
+
+// Call the twoSum function and print the result
+if (twoSum(arr, target))
+    console.log("true");
+else 
+    console.log("false");
