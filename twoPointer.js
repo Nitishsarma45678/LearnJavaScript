@@ -92,3 +92,33 @@ let inputArray =  [1, 2, 3, 4, 6];
 let target2 = 6;
 
 console.log(newFunction(inputArray, target2));
+
+
+
+
+
+
+
+//Problem: Given a sorted array, remove all duplicate elements in-place and return the length of the modified array.
+//Input: arr = [1, 1, 2, 2, 3, 4, 4]
+
+function removeDuplicates(arr) {
+    if (arr.length === 0) return 0;
+
+    let i = 0; // Pointer for unique elements
+
+    for (let j = 1; j < arr.length; j++) {
+        if (arr[j] !== arr[i]) {
+            i++; // Move the unique pointer forward
+            arr[i] = arr[j]; // Overwrite with the new unique element
+        }
+    }
+
+    // The length of the unique array is i + 1
+    return i + 1;
+}
+
+// Example
+const arr23 = [1, 1, 2, 2, 3, 4, 4];
+const length = removeDuplicates(arr23);
+console.log(arr23.slice(0, length)); // Output: [1, 2, 3, 4]
