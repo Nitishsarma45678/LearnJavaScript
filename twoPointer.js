@@ -1,4 +1,6 @@
-//Find two numbers in a sorted array that add up to a specific target.
+// Here We are Implementing "Two Pointer" approach with various example problems.
+
+//Find two numbers in a sorted array that add up to a specific target. 
 
 function twoSumArray(arr , target){
     let left = 0;
@@ -55,3 +57,38 @@ if (twoSum(arr, target))
     console.log("true");
 else 
     console.log("false");
+
+
+
+
+
+
+
+// Problem: Given a sorted array, find if there exists a pair of numbers that add up to a given target.
+
+//Input: arr = [1, 2, 3, 4, 6], target = 6
+
+function newFunction(arr , target){
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left < right){
+        const sum = arr[left] + arr[right]
+
+        if (sum === target){
+            return [left , right]
+        }
+        else if (sum < target){
+            left ++
+        }
+        else {
+            right --
+        }
+    }
+    return []
+}
+
+let inputArray =  [1, 2, 3, 4, 6];
+let target2 = 6;
+
+console.log(newFunction(inputArray, target2));
