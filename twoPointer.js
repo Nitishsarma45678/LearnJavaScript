@@ -121,3 +121,8 @@ function removeDuplicates(arr) {
 const arr23 = [1, 1, 2, 2, 3, 4, 4];
 const length = removeDuplicates(arr23);
 console.log(arr23.slice(0, length)); 
+
+
+
+
+
