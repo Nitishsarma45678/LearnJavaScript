@@ -36,8 +36,10 @@ console.log(isSame(s,t));
 // <<----------------------------------------------------------------------------------------------------->>
 
 
+
 // 2529. Maximum Count of Positive Integer and Negative Integer
 // Difficulty: Easy
+
 function findMaxCount(nums){
     let pos = 0;
     let neg = 0;
@@ -60,3 +62,27 @@ console.log(maxCount([-3, -2, -1, 0, 0, 1, 2]));
 
 console.log(maxCount([5, 20, 66, 1314])); 
 
+
+
+// <<----------------------------------------------------------------------------------------------------->>
+
+
+
+// 9. Palindrome Number
+// Difficulty: Easy
+
+function checkPalin(x){
+    if (x < 0){
+        return false;
+    }
+
+    const str = x.toString();
+
+    const reversedStr = str.split('').reverse().join('')
+
+    return str === reversedStr;
+}
+
+console.log(checkPalin(121))
+console.log(checkPalin(-121))
+console.log(checkPalin(10))
