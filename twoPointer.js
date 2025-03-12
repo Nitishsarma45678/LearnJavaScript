@@ -105,20 +105,19 @@ console.log(newFunction(inputArray, target2));
 function removeDuplicates(arr) {
     if (arr.length === 0) return 0;
 
-    let i = 0; // Pointer for unique elements
+    let i = 0; 
 
     for (let j = 1; j < arr.length; j++) {
         if (arr[j] !== arr[i]) {
-            i++; // Move the unique pointer forward
-            arr[i] = arr[j]; // Overwrite with the new unique element
+            i++;
+            arr[i] = arr[j]; 
         }
     }
-
-    // The length of the unique array is i + 1
+    
     return i + 1;
 }
 
-// Example
+
 const arr23 = [1, 1, 2, 2, 3, 4, 4];
 const length = removeDuplicates(arr23);
-console.log(arr23.slice(0, length)); // Output: [1, 2, 3, 4]
+console.log(arr23.slice(0, length)); 
