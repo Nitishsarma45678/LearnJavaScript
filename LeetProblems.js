@@ -56,11 +56,11 @@ function findMaxCount(nums){
 }
 
 
-console.log(maxCount([-2, -1, -1, 1, 2, 3]));
+console.log(findMaxCount([-2, -1, -1, 1, 2, 3]));
 
-console.log(maxCount([-3, -2, -1, 0, 0, 1, 2])); 
+console.log(findMaxCount([-3, -2, -1, 0, 0, 1, 2])); 
 
-console.log(maxCount([5, 20, 66, 1314])); 
+console.log(findMaxCount([5, 20, 66, 1314])); 
 
 
 
@@ -132,7 +132,7 @@ function intToRoman(num) {
     let roman = '';
 
     const values = Object.keys(romanMap).reverse().map(Number); 
-    
+
     for (let value of values) {
         while (num >= value) {
             roman += romanMap[value]; 
