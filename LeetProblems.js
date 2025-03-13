@@ -103,3 +103,45 @@ function strStr(haystack, needle) {
 
 console.log(strStr("sadbutsad", "sad")); 
 console.log(strStr("leetcode", "leeto")); 
+
+
+
+// <<----------------------------------------------------------------------------------------------------->>
+
+
+// 12. Integer to Roman
+// Difficulty : Medium
+
+function intToRoman(num) {
+    const romanMap = {
+        1000: 'M',
+        900: 'CM',
+        500: 'D',
+        400: 'CD',
+        100: 'C',
+        90: 'XC',
+        50: 'L',
+        40: 'XL',
+        10: 'X',
+        9: 'IX',
+        5: 'V',
+        4: 'IV',
+        1: 'I'
+    };
+
+    let roman = '';
+    const values = Object.keys(romanMap).reverse().map(Number); 
+
+    for (let value of values) {
+        while (num >= value) {
+            roman += romanMap[value]; 
+            num -= value; 
+        }
+    }
+    return roman;
+}
+
+
+console.log(intToRoman(3749)); 
+console.log(intToRoman(58));   
+console.log(intToRoman(1994)); 
