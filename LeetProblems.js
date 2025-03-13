@@ -130,8 +130,9 @@ function intToRoman(num) {
     };
 
     let roman = '';
-    const values = Object.keys(romanMap).reverse().map(Number); 
 
+    const values = Object.keys(romanMap).reverse().map(Number); 
+    
     for (let value of values) {
         while (num >= value) {
             roman += romanMap[value]; 
