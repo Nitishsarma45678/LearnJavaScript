@@ -1,97 +1,97 @@
-// // Here We are Implementing "Two Pointer" approach with various example problems.
+// Here We are Implementing "Two Pointer" approach with various example problems.
 
-// //Find two numbers in a sorted array that add up to a specific target. 
+//Find two numbers in a sorted array that add up to a specific target. 
 
-// function twoSumArray(arr , target){
-//     let left = 0;
-//     let right = arr.length - 1
+function twoSumArray(arr , target){
+    let left = 0;
+    let right = arr.length - 1
 
-//     while(left < right ){
-//         const sum = arr[left] + arr[right];
+    while(left < right ){
+        const sum = arr[left] + arr[right];
 
-//         if(sum === target){
-//             return [left , right]
-//         }
-//         else if(sum < target){
-//             left ++
-//         }
-//         else{
-//             right --
-//         }
-//     }
-//     return[]
-// }
+        if(sum === target){
+            return [left , right]
+        }
+        else if(sum < target){
+            left ++
+        }
+        else{
+            right --
+        }
+    }
+    return[]
+}
 
-// let array = [2, 3, 4, 5, 6, 7, 8]
-// let target = 9 ;
+let array = [2, 3, 4, 5, 6, 7, 8]
+let target = 9 ;
 
-// console.log(twoSumArray(array , target));
-
-
+console.log(twoSumArray(array , target));
 
 
-// // Another approach (Works on both unsorted and sorted arrays.)
-// // But Inefficient for Larger Arrays
 
-// function twoSum(arr , target){
-//     let n = arr.length;
 
-//     for (let i = 0 ; i < n ; i++){   //interate through each element
+// Another approach (Works on both unsorted and sorted arrays.)
+// But Inefficient for Larger Arrays
+
+function twoSum(arr , target){
+    let n = arr.length;
+
+    for (let i = 0 ; i < n ; i++){   //interate through each element
         
-//         for(let j = i + 1 ; j < n ; j++ ){     //Check every other element arr[j] that comes after arr[i]
+        for(let j = i + 1 ; j < n ; j++ ){     //Check every other element arr[j] that comes after arr[i]
 
-//             if (arr[i] + arr[j] === target){
-//                 return true;
-//             }
+            if (arr[i] + arr[j] === target){
+                return true;
+            }
 
-//         }
-//     }
-//     return false;
-// }
+        }
+    }
+    return false;
+}
 
-// let arr = [0, -1, 2, -3, 1];
-// let target1 = -2;
+let arr = [0, -1, 2, -3, 1];
+let target1 = -2;
 
-// // Call the twoSum function and print the result
-// if (twoSum(arr, target))
-//     console.log("true");
-// else 
-//     console.log("false");
-
-
+// Call the twoSum function and print the result
+if (twoSum(arr, target))
+    console.log("true");
+else 
+    console.log("false");
 
 
 
 
 
-// // Problem: Given a sorted array, find if there exists a pair of numbers that add up to a given target.
 
-// //Input: arr = [1, 2, 3, 4, 6], target = 6
 
-// function newFunction(arr , target){
-//     let left = 0;
-//     let right = arr.length - 1;
+// Problem: Given a sorted array, find if there exists a pair of numbers that add up to a given target.
 
-//     while (left < right){
-//         const sum = arr[left] + arr[right]
+//Input: arr = [1, 2, 3, 4, 6], target = 6
 
-//         if (sum === target){
-//             return [left , right]
-//         }
-//         else if (sum < target){
-//             left ++
-//         }
-//         else {
-//             right --
-//         }
-//     }
-//     return []
-// }
+function newFunction(arr , target){
+    let left = 0;
+    let right = arr.length - 1;
 
-// let inputArray =  [1, 2, 3, 4, 6];
-// let target2 = 6;
+    while (left < right){
+        const sum = arr[left] + arr[right]
 
-// console.log(newFunction(inputArray, target2));
+        if (sum === target){
+            return [left , right]
+        }
+        else if (sum < target){
+            left ++
+        }
+        else {
+            right --
+        }
+    }
+    return []
+}
+
+let inputArray =  [1, 2, 3, 4, 6];
+let target2 = 6;
+
+console.log(newFunction(inputArray, target2));
 
 
 
