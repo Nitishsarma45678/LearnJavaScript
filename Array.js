@@ -228,4 +228,17 @@ console.log("Reversed array : ", reversed);
 
 
 
+// Create an Multidimensional Array 
+// Creating a 2D Array 
+
+let matrix = [
+              [1, 2, 3],
+              [4, 5, 6], 
+              [7, 8, 9]
+];
+
+console.log(matrix);
+
+
+
 
