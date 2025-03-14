@@ -238,7 +238,22 @@ let matrix = [
 ];
 
 console.log(matrix);
-console.log(matrix[2][2])
+console.log(matrix[2][2])          // Accessing the Elements
 
+
+
+// Using Nested for Loop to iterate over the Array 
+
+let matrix23 = [
+                [7, 2, 9],
+                [9, 5, 1],
+                [6, 4, 3]
+];              
+
+for (let i = 0; i < matrix23.length ; i++){
+    for (let j = 0 ; j < matrix23[i].length; j++){
+        console.log(matrix23[i][j]);
+    }
+}
 
 
