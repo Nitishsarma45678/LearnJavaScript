@@ -270,3 +270,18 @@ let mat = [
 mat.push([7, 8, 9]);
 
 console.log(mat);
+
+
+
+// Flattening the array of arrays
+
+let mat23 = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+
+let flatA = mat.flat();
+
+console.log(flatA);
