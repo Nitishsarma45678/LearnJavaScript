@@ -257,3 +257,16 @@ for (let i = 0; i < matrix23.length ; i++){
 }
 
 
+
+
+//  Adding a Row 
+
+let mat = [
+    [1, 2, 3],
+    [4, 5, 6]
+];
+
+
+mat.push([7, 8, 9]);
+
+console.log(mat);
