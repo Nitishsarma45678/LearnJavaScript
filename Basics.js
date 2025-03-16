@@ -94,3 +94,14 @@ console.log("The total calculation will be : ", result)
 
 // since arrow functions can't have arguements we use spread operator (...anything)
 
+
+
+
+// Hoisting 
+// Basically calling a function first before it's being declared
+
+printHello(); 
+function printHello() {
+    console.log("Hello, world!");
+}
+
