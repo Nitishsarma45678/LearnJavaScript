@@ -73,3 +73,20 @@ const printText = () => {
     console.log("this is good")
 }
 printText()
+
+
+
+
+// with single and multiple arguements
+
+
+const newFunction = a => a * a;    //single 
+    console.log(newFunction(4))
+
+
+const newFunction2 = (a , b , c , d) => {  //multiple
+    let ans = (a * b + c * d);
+    return ans;
+}
+const result = newFunction2(2,3,4,5)
+console.log("The total calculation will be : ", result)
