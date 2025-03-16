@@ -90,3 +90,7 @@ const newFunction2 = (a , b , c , d) => {  //multiple
 }
 const result = newFunction2(2,3,4,5)
 console.log("The total calculation will be : ", result)
+
+
+// since arrow functions can't have arguements we use spread operator (...anything)
+
