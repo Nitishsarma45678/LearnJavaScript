@@ -58,3 +58,18 @@ let findout = Array.isArray(tryArr);   //using  Array.isArray method.
 console.log(findout);
 
 
+
+
+
+
+// Arrow Functions 
+
+const Adding = (a , b) => a + b ;
+console.log(Adding(9 , 2));
+
+// without the arguements also 
+
+const printText = () => {
+    console.log("this is good")
+}
+printText()
