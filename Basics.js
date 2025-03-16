@@ -67,7 +67,7 @@ console.log(findout);
 const Adding = (a , b) => a + b ;
 console.log(Adding(9 , 2));
 
-// without the arguements also 
+// without the parameters also 
 
 const printText = () => {
     console.log("this is good")
@@ -77,7 +77,7 @@ printText()
 
 
 
-// with single and multiple arguements
+// with single and multiple parameters
 
 
 const newFunction = a => a * a;    //single 
