@@ -112,3 +112,15 @@ function printHello() {
 // Takes another function as an argument (callback function).
 // Returns another function as its result.
 // Or both.
+
+// Examples of High-Order Functions
+
+const numbers = [1, 2, 3, 4, 5];
+
+const double = (num) => num * 2;
+
+// Using the higher-order function `map` to apply `double` to each element in the array
+const doubledNumbers = numbers.map(double);
+
+console.log("Original Numbers:", numbers); 
+console.log("Doubled Numbers:", doubledNumbers); 
