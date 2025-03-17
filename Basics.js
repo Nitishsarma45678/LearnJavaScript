@@ -143,3 +143,17 @@ const arr2 = [3, 4];
 const merged = [...arr1, ...arr2];
 
 console.log(merged); 
+
+
+
+// Objects in JS
+
+let car = {
+    brand: "Toyota",
+    model: "Corolla",
+    year: 2021
+};
+
+console.log(car.brand); // Toyota
+car.year = 2022; // Update property
+console.log(car.year); // 2022
