@@ -124,3 +124,14 @@ const doubledNumbers = numbers.map(double);
 
 console.log("Original Numbers:", numbers); 
 console.log("Doubled Numbers:", doubledNumbers); 
+
+
+
+
+// Spread Operator
+const numbs = [1, 2, 3];
+const copy = [...numbs]; // Create a copy
+copy.push(4);
+
+console.log("Original:", numbs); 
+console.log("Copy:", copy);        
