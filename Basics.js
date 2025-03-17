@@ -105,3 +105,10 @@ function printHello() {
     console.log("Hello, world!");
 }
 
+
+
+// High-order function is a function that:
+
+// Takes another function as an argument (callback function).
+// Returns another function as its result.
+// Or both.
