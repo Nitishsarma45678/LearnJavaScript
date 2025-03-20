@@ -140,17 +140,16 @@ console.log(secondLar(fh));
 
 
 function removeDupli(array){
-    const s = new Set();
+    let s = new Set();
 
     let theIndex = 0;
 
-    for(i = 0 ; i < array.length ; i ++){
+    for (let i = 0; i<array.length ; i++){
         if(!s.has(array[i])){
-            s.add(array[i]);
-            array[theIndex++] = array[i]
+            s.add(array[i])
+            array[theIndex++] =  array[i]
         }
     }
-    return theIndex;
 }
 
 let a1 = [2, 2, 2, 2, 2]
@@ -164,3 +163,45 @@ const newSizeC = removeDupli(c3);
 console.log(a1.slice(0, newSizeA).join(' '));
 console.log(b2.slice(0, newSizeB).join(' '));
 console.log(c3.slice(0, newSizeC).join(' '));
+
+
+
+
+
+
+// 4.Generating All Subarrays
+// Last Updated : 07 Feb, 2025
+// Given an array arr[], the task is to generate all the possible subarrays of the given array.
+
+// Examples: 
+
+// Input: arr[] = [1, 2, 3]
+// Output: [ [1], [1, 2], [2], [1, 2, 3], [2, 3], [3] ]
+
+// Input: arr[] = [1, 2]
+// Output: [ [1], [1, 2], [2] ]
+
+
+function subArrFind(arr){
+    let n = arr.length;
+
+    for (let i = 0 ; i< n ; i++){
+        
+        for(let j = i; j < n ; j++){
+
+            let subArr = []
+            
+            for(let k = i ; k<=j ; k++){
+                subArr.push(arr[k]);
+            }
+            console.log(subArr.join(" "));
+        } 
+    }
+
+}
+
+let hj =  [1, 2, 3]
+let kj =  [1, 2]
+
+console.log(subArrFind(hj));
+console.log(subArrFind(kj));
