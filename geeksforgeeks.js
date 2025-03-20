@@ -91,3 +91,32 @@ let arr23 =   [20, 10, 20, 4, 100] ;
 
 console.log(findLargestElement(arr12))
 console.log(findLargestElement(arr23))
+
+
+
+
+
+// 4.Second Largest Element in an Array
+// Given an array of positive integers arr[] of size n, the task is to find second largest distinct element in the array.
+
+// Note: If the second largest element does not exist, return -1.
+
+// Examples:
+
+// Input: arr[] = [12, 35, 1, 10, 34, 1]
+// Output: 34
+// Explanation: The largest element of the array is 35 and the second largest element is 34.
+
+function secondLar(array){
+    n = array.length;
+
+    for (let i = n - 2 ; i >= 0 ; i --){
+        if(array[i] !== array[n-1]){
+            return array[i];
+        }
+    }
+    return -1;
+}
+
+let fh = [12, 35, 1, 10, 34, 1];
+console.log(secondLar(fh));
