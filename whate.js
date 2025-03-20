@@ -18,7 +18,7 @@ const count = 8;
 const rows = [];
 
 for (let i = 0; i < count; i++) {
-  rows.push(i);
+  rows.push(character.repeat(1));
 }
 
 let result = ""
