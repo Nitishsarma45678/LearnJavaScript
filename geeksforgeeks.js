@@ -22,6 +22,9 @@ console.log(getAlternates(arr).join(' '));
 
 
 
+
+
+// 2. Linear Search Algorithm
 // Input: arr[] = [1, 2, 3, 4], x = 3
 // Output: 2
 // Explanation: There is one test case with array as [1, 2, 3 4] and element to be searched as 3. Since 3 is present at index 2, the output is 2.
@@ -39,3 +42,32 @@ let inArr = [1, 2, 3, 4]
 let target = 3 ;    // x value
 
 console.log(linearFind(inArr , target));
+
+
+
+
+
+
+
+// 3. Largest element in an Array
+// Given an array arr. The task is to find the largest element in the given array. 
+
+// Examples: 
+
+// Input: arr[] = [10, 20, 4]
+// Output: 20
+// Explanation: Among 10, 20 and 4, 20 is the largest. 
+
+// Input: arr[] = [20, 10, 20, 4, 100]
+// Output: 100
+
+
+function findLargestElement(arr){
+    return Math.max(...arr)
+}
+
+let arr1 =  [10, 20, 4] ;
+let arr2 =   [20, 10, 20, 4, 100] ;
+
+console.log(findLargestElement(arr1))
+console.log(findLargestElement(arr2))
