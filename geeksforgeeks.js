@@ -120,3 +120,47 @@ function secondLar(array){
 
 let fh = [12, 35, 1, 10, 34, 1];
 console.log(secondLar(fh));
+
+
+
+
+
+// 5. Remove duplicates from Sorted Array
+
+// Input: arr[] = [2, 2, 2, 2, 2]
+// Output: [2]
+// Explanation: All the elements are 2, So only keep one instance of 2.
+
+// Input: arr[] = [1, 2, 2, 3, 4, 4, 4, 5, 5]
+// Output: [1, 2, 3, 4, 5]
+
+// Input: arr[] = [1, 2, 3]
+// Output: [1, 2, 3]
+// Explanation : No change as all elements are distinct.
+
+
+function removeDupli(array){
+    const s = new Set();
+
+    let theIndex = 0;
+
+    for(i = 0 ; i < array.length ; i ++){
+        if(!s.has(array[i])){
+            s.add(array[i]);
+            array[theIndex++] = array[i]
+        }
+    }
+    return theIndex;
+}
+
+let a1 = [2, 2, 2, 2, 2]
+let b2 = [1, 2, 2, 3, 4, 4, 4, 5, 5]
+let c3 = [1, 2, 3]
+
+const newSizeA = removeDupli(a1);
+const newSizeB = removeDupli(b2);
+const newSizeC = removeDupli(c3);
+
+console.log(a1.slice(0, newSizeA).join(' '));
+console.log(b2.slice(0, newSizeB).join(' '));
+console.log(c3.slice(0, newSizeC).join(' '));
