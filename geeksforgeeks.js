@@ -71,3 +71,23 @@ let arr2 =   [20, 10, 20, 4, 100] ;
 
 console.log(findLargestElement(arr1))
 console.log(findLargestElement(arr2))
+
+//another way of doing it ⬇️
+
+function findTheNo(array){
+    let max = array[0];
+
+    for(let i = 0 ; i < array.length ; i++){
+        if (array[i] > max){
+            max = arr[i]
+        }
+    }
+    return max;
+
+}
+
+let arr12 =  [10, 20, 4] ;
+let arr23 =   [20, 10, 20, 4, 100] ;
+
+console.log(findLargestElement(arr12))
+console.log(findLargestElement(arr23))
