@@ -225,3 +225,24 @@ function reverseArr(array){
 
 let nwArr = [1, 4, 3, 2, 6, 5]
 console.log(reverseArr(nwArr));
+
+
+
+
+
+// 6.Rotate an Array
+// input arr[] = {1, 2, 3, 4, 5, 6}, d = 2.
+
+function rotateArr(arr, k){
+    k = k % arr.length;
+
+    for(let i = 0; i < k; i++){
+        arr.unshift(arr.pop())
+    }
+    return arr;
+}
+
+inreArr = [1, 2, 3, 4, 5, 6]
+k = 2;
+
+console.log(rotateArr(inreArr,k));
