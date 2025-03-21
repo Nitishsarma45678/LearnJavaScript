@@ -121,3 +121,31 @@ function removeDuplicates(arr) {
 const arr23 = [1, 1, 2, 2, 3, 4, 4];
 const length = removeDuplicates(arr23);
 console.log(arr23.slice(0, length));
+
+
+
+
+
+
+
+// Problem: Array Reverse
+// Input: arr[] = {1, 4, 3, 2, 6, 5}  
+// Output: {5, 6, 2, 3, 4, 1}
+
+function revArr(arr){
+    let left = 0 ;           
+    let right = arr.length -1;
+
+    while (left < right){
+        [arr[left] , arr[right]] = [arr[right] , arr[left]];
+
+        left ++;
+
+        right --;
+
+    }
+}
+
+let theArr = [1, 4, 3, 2, 6, 5]
+console.log(revArr(theArr));
+console.log(theArr.join(" "));
