@@ -182,26 +182,46 @@ console.log(c3.slice(0, newSizeC).join(' '));
 // Output: [ [1], [1, 2], [2] ]
 
 
-function subArrFind(arr){
-    let n = arr.length;
+function findSubArr(arr){
+    const n = arr.length;
 
-    for (let i = 0 ; i< n ; i++){
-        
-        for(let j = i; j < n ; j++){
+    for(let i = 0 ; i < n ; i++){
 
-            let subArr = []
-            
-            for(let k = i ; k<=j ; k++){
+        for (let j = i ; j < n ; j++){
+
+            let subArr = [];
+
+            for (let k = i ; k <= j ; k++){
                 subArr.push(arr[k]);
             }
-            console.log(subArr.join(" "));
-        } 
+            console.log(subArr.join(" "))
+        }
     }
-
 }
 
-let hj =  [1, 2, 3]
-let kj =  [1, 2]
+let inArr1 = [1, 2, 3];
+let inArr2 = [1, 2];
 
-console.log(subArrFind(hj));
-console.log(subArrFind(kj));
+console.log(findSubArr(inArr1))
+console.log(findSubArr(inArr2))
+
+
+
+
+// 5. Array Reverse 
+// Input: arr[] = {1, 4, 3, 2, 6, 5}  
+// Output: {5, 6, 2, 3, 4, 1}
+// Explanation: The first element 1 moves to last position, the second element 4 moves to second-last and so on.
+
+
+function reverseArr(array){
+    let reversed = []
+
+    for(let i = array.length - 1 ; i>= 0; i--){
+        reversed.push(array[i]);
+    }
+    return reversed;
+}
+
+let nwArr = [1, 4, 3, 2, 6, 5]
+console.log(reverseArr(nwArr));
