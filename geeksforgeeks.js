@@ -279,3 +279,30 @@ function findTheLar(arr){
 
 let thArr = [10, 15, 38, 20, 13];
 console.log(findTheLar(theArrin));
+
+
+
+
+
+// 8.Check an Array is Sorted or Not
+// Input : const arr = [1, 2, 3, 4, 5]; 
+// Output : true
+// Input : const arr = [3, 1, 4, 2, 5];
+// Output : false
+
+
+function sorTarrCheck(arr){
+    for(let i = 0 ; i < arr.length - 1; i++){
+        if(arr[i] > arr[i + 1]){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+let chekArr = [1, 2, 3, 4, 5]; 
+let chekArr2 = [3, 1, 4, 2, 5];
+
+console.log(sorTarrCheck(chekArr))
+console.log(sorTarrCheck(chekArr2))
