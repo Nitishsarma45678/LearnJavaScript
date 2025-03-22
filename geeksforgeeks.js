@@ -306,3 +306,20 @@ let chekArr2 = [3, 1, 4, 2, 5];
 
 console.log(sorTarrCheck(chekArr))
 console.log(sorTarrCheck(chekArr2))
+
+
+
+
+
+// 9.Left Rotate by One in an Array
+
+function leftRotateByOne(arr) {
+    const temp = arr[0];
+    for (let i = 0; i < arr.length - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    arr[arr.length - 1] = temp;
+    return arr;
+}
+const arrTy = [1, 2, 3, 4, 5];
+console.log("Rotated Array:", leftRotateByOne(arr));
