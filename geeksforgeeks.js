@@ -262,3 +262,19 @@ function findLargest(arr){
 
 let theArrin = [10, 15, 38, 20, 13];
 console.log(findLargest(theArrin));
+
+//another way of doing it ⬇️
+
+function findTheLar(arr){
+    let theLar = arr[0];
+
+    for(let i = 1 ; i < arr.length ; i++){
+        if(arr[i] > theLar){
+            theLar = arr[i];
+        }
+    }
+    return theLar;
+}
+
+let thArr = [10, 15, 38, 20, 13];
+console.log(findTheLar(theArrin));
