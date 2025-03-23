@@ -246,3 +246,19 @@ inreArr = [1, 2, 3, 4, 5, 6]
 k = 2;
 
 console.log(rotateArr(inreArr,k));
+
+
+
+
+
+
+// 7. Find Largest Element in an Array
+// Input : [10, 15, 38, 20, 13];
+// Output: 38
+
+function findLargest(arr){
+    return Math.max(...arr);
+}
+
+let theArrin = [10, 15, 38, 20, 13];
+console.log(findLargest(theArrin));
