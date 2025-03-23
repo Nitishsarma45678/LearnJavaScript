@@ -122,22 +122,6 @@ console.log(typeof(dk));  // typeof()   used to check the type of an Array , ret
 
 
 
-// Check an Array is Sorted or Not
-
-function checkArr (arr){
-    for (i = 0 ; i < arr.length - 1 ; i ++){
-        if (arr[i] > arr[i + 1]){
-            return false;
-        }
-    }
-    return true;
-}
-
-let bh = [2 , 5 , 9, 4, 1]
-let ch = [1 , 2, 3, 4, 5]
-
-console.log(checkArr(bh))
-console.log(checkArr(ch))
 
 
 
