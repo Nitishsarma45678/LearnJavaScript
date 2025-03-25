@@ -29,3 +29,18 @@
 // a is 8  
 // b is 3  
 
+function test() {
+    var a = "3";
+    var b = "8";
+    
+/***********Do not change the code above 👆*******/
+
+    var temp = a;  //here I have created a third variable(temp) which will store the a value for temporary use.
+    a = b;
+    b = temp;
+
+/***********Do not change the code below 👇*******/
+
+    console.log("a is " + a);
+    console.log("b is " + b);
+}
