@@ -88,5 +88,3 @@ function bmiCalculator(weight, height) {
 
 
 
-
-hmjjjh v
