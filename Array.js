@@ -285,3 +285,24 @@ let mat23 = [
 let flatA = mat.flat();
 
 console.log(flatA);
+
+
+
+
+
+
+// Creating an Array and Initializing with Values
+let a1 = ["HTML", "CSS", "JS"];
+console.log("Original Array: " + a1);
+
+// Removes and returns the last element
+let lst = a1.pop();
+console.log("After Removing the last: " + a1);
+
+// Removes and returns the first element
+let fst = a1.shift();
+console.log("After Removing the First: " + a1);
+
+// Removes 2 elements starting from index 1
+a1.splice(1, 2);
+console.log("After Removing 2 elements starting from index 1: " + a1);
