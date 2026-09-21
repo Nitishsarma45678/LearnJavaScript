@@ -44,6 +44,5 @@ Submit a pull request to improve the content or add new examples.
 
 Got questions or suggestions? Feel free to reach out!
 📧 Email: nitishsarma971@gmail.com
-🔗 GitHub Profile: @Nitishsarma45678
 
 Happy Coding! 🎉
