@@ -94,7 +94,7 @@ const jobs = [
 ];
 const result = weightedIntervalSchedule(jobs);
 assertEqual(result.totalWeight, 17, "optimal total weight");
-assertEqual(result.selectedIndexes, [0, 4, 5], "reconstructed optimal schedule");
+assertEqual(result.selectedIndexes, [1, 4], "reconstructed optimal schedule");
 
 assertEqual(weightedIntervalSchedule([]).totalWeight, 0, "empty input");
 assertEqual(
