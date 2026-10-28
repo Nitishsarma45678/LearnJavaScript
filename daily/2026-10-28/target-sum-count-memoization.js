@@ -37,7 +37,7 @@ assert.equal(countTargetSumWays([1, 1, 1, 1, 1], 3), 5);
 assert.equal(countTargetSumWays([1], 1), 1);
 assert.equal(countTargetSumWays([1], 0), 0);
 assert.equal(countTargetSumWays([0, 0, 1], 1), 4);
-assert.equal(countTargetSumWays([-1, 2], 1), 2);
+assert.equal(countTargetSumWays([-1, 1], 0), 2);
 assert.equal(countTargetSumWays([], 0), 1);
 assert.equal(countTargetSumWays([], 4), 0);
 assert.throws(() => countTargetSumWays([1, 1.5], 2), TypeError);
