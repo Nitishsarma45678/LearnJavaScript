@@ -92,7 +92,10 @@ async function runTests() {
   );
 
   assert.deepEqual(await collect(mapAsyncOrdered([], (value) => value)), []);
-  assert.throws(() => mapAsyncOrdered([1], (value) => value, { concurrency: 0 }), /concurrency/);
+  await assert.rejects(
+    () => collect(mapAsyncOrdered([1], (value) => value, { concurrency: 0 })),
+    /concurrency/
+  );
   console.log("mapAsyncOrdered: all assertions passed");
 }
 
