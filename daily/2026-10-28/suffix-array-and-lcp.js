@@ -59,7 +59,10 @@ function buildSuffixArray(input) {
   let common = 0;
   for (let start = 0; start < n; start += 1) {
     const order = inverse[start];
-    if (order === 0) continue;
+    if (order === 0) {
+      common = 0;
+      continue;
+    }
 
     const previousStart = suffixArray[order - 1];
     while (
