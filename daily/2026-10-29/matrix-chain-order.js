@@ -69,7 +69,7 @@ function matrixChainOrder(dimensions) {
 {
   const result = matrixChainOrder([40, 20, 30, 10, 30]);
   assert.equal(result.cost, 26000n);
-  assert.equal(result.parenthesization, "(A1(A2A3))A4".replace(")A4", "A4)"));
+  assert.equal(result.parenthesization, "((A1(A2A3))A4)");
 }
 
 // Equal dimensions create equal-cost alternatives; tie-breaking is stable.
