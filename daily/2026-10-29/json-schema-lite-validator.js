@@ -116,8 +116,13 @@ if (require.main === module) {
     name: "M", age: -1, tags: [42], extra: true
   }, userSchema);
   assert.deepEqual(errors.map((error) => error.keyword).sort(),
-    ["additionalProperties", "maximum", "minimum", "minLength", "required", "type"].sort());
+    ["additionalProperties", "minimum", "minLength", "type"].sort());
   assert.ok(errors.some((error) => error.path === "$.tags[0]" && error.keyword === "type"));
+
+  const highAge = validate({ name: "Mira", age: 131, tags: ["js"] }, userSchema);
+  assert.ok(highAge.some((error) => error.keyword === "maximum"));
+  const missingAge = validate({ name: "Mira", tags: ["js"] }, userSchema);
+  assert.ok(missingAge.some((error) => error.path === "$.age" && error.keyword === "required"));
   assert.equal(validate(null, { type: "object" }).length, 1);
   assert.throws(() => validate({}, null), TypeError);
   console.log("json-schema-lite-validator: all assertions passed");
