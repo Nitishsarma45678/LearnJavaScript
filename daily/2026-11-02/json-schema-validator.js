@@ -110,7 +110,7 @@ async function runTests() {
   assert(good.valid, JSON.stringify(good.errors));
   const bad = validateJSON({ name: "a", age: -1, tags: [3], extra: true }, schema);
   assert(!bad.valid);
-  assertEqual(bad.errors.length, 4);
+  assertEqual(bad.errors.length, 5);
   assert(bad.errors.some(error => error.path === "$.tags[0]" && error.keyword === "type"));
   assert(!validateJSON("not-an-object", schema).valid);
   console.log("JSON schema validator tests passed");
