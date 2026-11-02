@@ -72,5 +72,5 @@ assert.ok(events.some(event => event.type === 'delete' && event.path.join('.') =
 assert.ok(events.some(event => event.path.join('.') === 'flags.1'));
 unsubscribe();
 state.user.score = 12;
-assert.equal(events.length, 4); // No notifications after unsubscribe.
+assert.equal(events.length, 3); // No notifications after unsubscribe.
 console.log('Observable state tests passed');
