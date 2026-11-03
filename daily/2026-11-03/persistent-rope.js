@@ -107,7 +107,7 @@ const edited = original.insert(11, '[new]').delete(11, 16);
 assert.equal(original.toString(), 'persistent-rope-data-structure');
 assert.equal(edited.toString(), original.toString());
 assert.equal(original.slice(0, 10).toString(), 'persistent');
-assert.equal(original.slice(-5).toString(), 'ture');
+assert.equal(original.slice(-5).toString(), 'cture');
 const [head, tail] = original.split(10);
 assert.equal(head.concat(tail).toString(), original.toString());
 assert.equal(head.toString(), 'persistent');
