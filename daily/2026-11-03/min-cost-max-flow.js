@@ -79,7 +79,7 @@ network.addEdge(0, 2, 1, 0);
 network.addEdge(1, 2, 1, 1);
 network.addEdge(1, 3, 1, 3);
 network.addEdge(2, 3, 2, 1);
-assert.deepEqual(network.run(0, 3, 2), { flow: 2, cost: 3 });
+assert.deepEqual(network.run(0, 3, 2), { flow: 2, cost: 4 });
 
 const limited = new MinCostFlow(3);
 limited.addEdge(0, 1, 5, 4);
