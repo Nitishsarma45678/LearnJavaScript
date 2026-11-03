@@ -59,7 +59,7 @@ class StreamingKMP {
 const matcher = new StreamingKMP('aba');
 assert.deepEqual(matcher.push('ab'), []);
 assert.deepEqual(matcher.push('aba'), [0, 2]);
-assert.deepEqual(matcher.push('xaba'), [5]);
+assert.deepEqual(matcher.push('xaba'), [6]);
 matcher.reset();
 assert.deepEqual(matcher.push('ababa'), [0, 2]);
 assert.throws(() => new StreamingKMP(''), TypeError);
