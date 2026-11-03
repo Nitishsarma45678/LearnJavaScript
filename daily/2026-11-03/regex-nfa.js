@@ -117,4 +117,23 @@ function compileRegex(pattern) {
 }
 
 // Full-string matching; supports literals, ., *, +, ?, |, groups and backslash escapes.
-const emailLocal = compileRegex('[not-supported]');
+const grouped = compileRegex('a(b|c)*d');
+assert.equal(grouped.test('ad'), true);
+assert.equal(grouped.test('abcbcd'), true);
+assert.equal(grouped.test('abexd'), false);
+const optional = compileRegex('colou?r');
+assert.equal(optional.test('color'), true);
+assert.equal(optional.test('colour'), true);
+assert.equal(optional.test('colouur'), false);
+const repeated = compileRegex('ab+c');
+assert.equal(repeated.test('abbc'), true);
+assert.equal(repeated.test('ac'), false);
+const escaped = compileRegex(String.raw`a\.b`);
+assert.equal(escaped.test('a.b'), true);
+assert.equal(escaped.test('axb'), false);
+const empty = compileRegex('');
+assert.equal(empty.test(''), true);
+assert.equal(empty.test('x'), false);
+assert.throws(() => compileRegex('('), SyntaxError);
+assert.throws(() => compileRegex('a**'), SyntaxError);
+console.log('Regex NFA tests passed');
