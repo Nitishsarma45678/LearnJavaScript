@@ -43,19 +43,28 @@ class AsyncResourcePool {
   }
   async createFor(waiter) {
     waiter.state = 'creating'; this.creating++;
+    let resource;
     try {
-      const resource = await this.create();
-      this.creating--;
-      if (this.closed || waiter.aborted || waiter.signal?.aborted) {
-        await this.destroy(resource);
-        this.settle(waiter, waiter.reject, this.closed ? new Error('Pool is closed') : abortError());
-      } else {
-        this.all.add(resource); this.borrowed.add(resource);
-        this.settle(waiter, waiter.resolve, resource);
-      }
+      resource = await this.create();
     } catch (error) {
       this.creating--;
       this.settle(waiter, waiter.reject, error);
+      this.dispatch();
+      return;
+    }
+    this.creating--;
+    if (this.closed || waiter.aborted || waiter.signal?.aborted) {
+      try {
+        await this.destroy(resource);
+      } catch (error) {
+        this.settle(waiter, waiter.reject, error);
+        this.dispatch();
+        return;
+      }
+      this.settle(waiter, waiter.reject, this.closed ? new Error('Pool is closed') : abortError());
+    } else {
+      this.all.add(resource); this.borrowed.add(resource);
+      this.settle(waiter, waiter.resolve, resource);
     }
     this.dispatch();
   }
@@ -117,8 +126,8 @@ class AsyncResourcePool {
   await pool.release(first);
   const second = await secondPromise;
   assert.equal(second, first);
-  await assert.rejects(pool.release(first), /not currently borrowed/);
   await pool.release(second);
+  await assert.rejects(pool.release(second), /not currently borrowed/);
   await pool.use(async resource => resource.id);
   await pool.close();
   assert.equal(destroyed, 1);
