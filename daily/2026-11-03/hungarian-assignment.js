@@ -64,7 +64,7 @@ const rectangular = [[10, 19, 8, 15], [10, 18, 7, 17], [13, 16, 9, 14]];
 const result = hungarian(rectangular);
 assert.equal(new Set(result.assignment).size, rectangular.length);
 assert.equal(result.cost, bruteForceMinimum(rectangular));
-assert.equal(hungarian([[-5, -2], [-3, -4]]).cost, -8);
+assert.equal(hungarian([[-5, -2], [-3, -4]]).cost, -9);
 assert.deepEqual(hungarian([]), { cost: 0, assignment: [] });
 assert.throws(() => hungarian([[1], [2]]), RangeError);
 assert.throws(() => hungarian([[1, Infinity]]), RangeError);
