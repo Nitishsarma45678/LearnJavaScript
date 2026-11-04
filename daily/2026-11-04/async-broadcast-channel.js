@@ -49,7 +49,7 @@ class AsyncBroadcastChannel {
     }
 
     const subscriber = {
-      queue: this.history.slice(-replay),
+      queue: replay === 0 ? [] : this.history.slice(-replay),
       readers: [],
       spaceWaiters: [],
       closed: this.closed,
@@ -208,6 +208,11 @@ async function runTests() {
   const late = channel.subscribe({ replay: 2 });
   assert.deepEqual(await late.next(), { value: 2, done: false });
   assert.deepEqual(await late.next(), { value: 3, done: false });
+
+  // Replay is opt-in: a subscriber with replay=0 sees only future publishes.
+  const noReplay = channel.subscribe();
+  await channel.publish(4);
+  assert.deepEqual(await noReplay.next(), { value: 4, done: false });
 
   // Drop-newest preserves the oldest queued item when full.
   const dropping = new AsyncBroadcastChannel({
