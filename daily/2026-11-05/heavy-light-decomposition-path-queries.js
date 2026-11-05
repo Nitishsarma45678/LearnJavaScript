@@ -127,9 +127,6 @@ class HeavyLightDecomposition {
         }
       }
     }
-    this.segmentTree = new SumSegmentTree(
-      Array.from({ length: vertexCount }, (_, vertex) => values[this.vertexAtPosition(vertex)])
-    );
     this.vertexAtPosition = new Int32Array(vertexCount);
     for (let vertex = 0; vertex < vertexCount; vertex++) {
       this.vertexAtPosition[this.position[vertex]] = vertex;
