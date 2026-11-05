@@ -122,10 +122,10 @@ function runTests() {
   assert.equal(matrix.kthSmallest(0, 8, 0), 0);
   assert.equal(matrix.kthSmallest(0, 8, 4), 7);
   assert.equal(matrix.kthSmallest(1, 7, 2), 1);
-  assert.equal(matrix.countLessThan(0, 8, 7), 5);
+  assert.equal(matrix.countLessThan(0, 8, 7), 4);
   assert.equal(matrix.frequency(0, 8, 1), 2);
   assert.equal(matrix.frequency(0, 8, 0xFFFFFFFF), 1);
-  assert.equal(matrix.rangeFrequency(0, 8, 1, 8), 4);
+  assert.equal(matrix.rangeFrequency(0, 8, 1, 8), 5);
   assert.equal(matrix.rangeFrequency(2, 6, 0, 10), 3);
   assert.equal(matrix.countLessThan(0, 8, 0x100000000), 8);
   assert.throws(() => matrix.kthSmallest(0, 2, 2), RangeError);
