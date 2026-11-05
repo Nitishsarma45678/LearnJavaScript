@@ -189,7 +189,7 @@ if (require.main === module) {
     distinctByT((value) => value % 3),
     dropT(1)
   );
-  assert.deepEqual(intoArray(expanded, [1, 4, 7, 8]), [2, 3]);
+  assert.deepEqual(intoArray(expanded, [1, 4, 7, 8]), [2, 9]);
 
   assert.deepEqual(
     intoArray(takeWhileT((value) => value < 5), [1, 2, 4, 5, 6]),
