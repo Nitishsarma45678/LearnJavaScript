@@ -161,17 +161,25 @@ async function runTests() {
 
   let active = 0;
   let peak = 0;
-  const bounded = await collect(parallelMap(
+  let started = 0;
+  let releaseGate;
+  const gate = new Promise((resolve) => {
+    releaseGate = resolve;
+  });
+  const boundedPromise = collect(parallelMap(
     [1, 2, 3, 4, 5, 6],
     async (value) => {
       active += 1;
+      started += 1;
       peak = Math.max(peak, active);
-      await Promise.resolve();
+      if (started === 2) releaseGate();
+      await gate;
       active -= 1;
       return value;
     },
     { concurrency: 2 }
   ));
+  const bounded = await boundedPromise;
   assert.deepEqual(bounded, [1, 2, 3, 4, 5, 6]);
   assert.equal(peak, 2);
 
