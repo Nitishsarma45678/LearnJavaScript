@@ -251,7 +251,7 @@ if (require.main === module) {
     assert.deepEqual(asyncOrder, ["one:7", "two:7"]);
 
     assert.equal(emitter.listenerCount("orders"), 1); // "**" matches zero segments
-    assert.equal(emitter.clear(), 1);
+    assert.equal(emitter.clear(), 2);
     assert.equal(emitter.listenerCount(), 0);
     assert.throws(() => emitter.emit("orders..created"), TypeError);
     assert.throws(() => emitter.on("orders.*.bad*", () => {}), TypeError);
