@@ -336,8 +336,9 @@ async function runTests() {
   });
   const pending = creatingPool.acquire();
   await Promise.resolve();
-  await creatingPool.close();
+  const closing = creatingPool.close();
   gate.resolve({ id: "created-after-close" });
+  await closing;
   await assert.rejects(pending, /closed/);
   assert.ok(destroyed.includes("created-after-close"));
   assert.equal(creatingPool.stats().total, 0);
