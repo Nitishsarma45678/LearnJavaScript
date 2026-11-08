@@ -146,8 +146,12 @@ function composeTraits(Base, traits, {
 function runTests() {
   class Base {
     constructor(id) {
-      this.id = id;
+      this._id = id;
       this._secret = "s-" + id;
+    }
+
+    get id() {
+      return this._id;
     }
 
     identity() {
@@ -165,6 +169,17 @@ function runTests() {
     configurable: true
   });
 
+  const diagnosticMembers = {
+    [symbolKey]() {
+      return "diagnostic:" + this.id;
+    }
+  };
+  Object.defineProperty(
+    diagnosticMembers,
+    "secret",
+    Object.getOwnPropertyDescriptor(accessors, "secret")
+  );
+
   const Combined = composeTraits(Base, [
     {
       name: "NeedsIdentity",
@@ -177,12 +192,7 @@ function runTests() {
     },
     {
       name: "Diagnostics",
-      members: {
-        ...accessors,
-        [symbolKey]() {
-          return "diagnostic:" + this.id;
-        }
-      }
+      members: diagnosticMembers
     }
   ]);
 
@@ -238,10 +248,10 @@ function runTests() {
   );
   assert.throws(
     () => composeTraits(Base, [
-      { name: "A", members: {} },
-      { name: "B", members: {} }
-    ], { resolve: { missing: "A" } }),
-    error => error instanceof Error && !/missing/.test(error.message)
+      { name: "A", members: { format() {} } },
+      { name: "B", members: { format() {} } }
+    ], { resolve: { format: "C" } }),
+    /does not contribute/
   );
 }
 
