@@ -64,6 +64,7 @@ function reverseRightBoundary(from, to) {
   if (from === to) return;
   let previous = from;
   let current = from.right;
+  previous.right = null;
   while (true) {
     const next = current.right;
     current.right = previous;
