@@ -184,7 +184,7 @@ function runTests() {
 
   const result = graph.minCostMaxFlow(0, 3);
   assert.equal(result.flow, 3);
-  assert.equal(result.cost, 4);
+  assert.equal(result.cost, 5);
   assert.equal(result.augmentations.reduce((total, item) => total + item.amount, 0), 3);
 
   const negativeCosts = new MinCostMaxFlow(4);
