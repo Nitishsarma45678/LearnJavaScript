@@ -191,25 +191,21 @@ function runTests() {
   };
   let checks = 15;
   for (let trial = 0; trial < 120; trial++) {
-    const nodes = Array.from({ length: 1 + random(35) }, (_, i) => ({
+    const nodes = Array.from({ length: 1 + random(35) }, () => ({
       value: random(9),
       left: null,
       right: null
     }));
     const available = [nodes[0]];
     for (let i = 1; i < nodes.length; i++) {
-      while (true) {
-        const parent = available[random(available.length)];
-        const side = random(2) ? "left" : "right";
-        if (!parent[side]) {
-          parent[side] = nodes[i];
-          if (!parent.left || !parent.right) available.push(parent);
-          break;
-        }
-        if (parent.left && parent.right) {
-          available.splice(available.indexOf(parent), 1);
-        }
-      }
+      const parentIndex = random(available.length);
+      const parent = available[parentIndex];
+      const side = !parent.left && !parent.right
+        ? (random(2) ? "left" : "right")
+        : parent.left ? "right" : "left";
+      parent[side] = nodes[i];
+      if (parent.left && parent.right) available.splice(parentIndex, 1);
+      available.push(nodes[i]);
     }
     const tree = nodes[0];
     const reference = recursiveTraversals(tree);
