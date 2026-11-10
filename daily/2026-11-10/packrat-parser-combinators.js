@@ -293,7 +293,7 @@ function arithmeticParser() {
 
   const product = chainLeft1(atom, multiply);
   expression = chainLeft1(product, add);
-  return whitespace.skipLeft(expression).skipRight(whitespace);
+  return expression.skipLeft(whitespace).skipRight(whitespace);
 }
 
 function runTests() {
@@ -313,7 +313,7 @@ function runTests() {
   const oneOrMoreA = literal('a').many({ min: 1 });
   assert.deepEqual(run(oneOrMoreA, 'aaa').value, ['a', 'a', 'a']);
   assert.throws(() => run(oneOrMoreA, ''), /Parse error/);
-  assert.throws(() => pure(1).many(), /empty input/);
+  assert.throws(() => run(pure(1).many(), ''), /empty input/);
 
   let leftRecursive;
   leftRecursive = lazy(() => leftRecursive.or(literal('x')));
