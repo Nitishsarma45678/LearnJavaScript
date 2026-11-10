@@ -222,14 +222,15 @@ function runTests() {
   assert.equal(forest.pathSum(2, 4), 3 + 2 + 4 + 5);
   assert.equal(forest.cut(1, 4), false);
   forest.pathAdd(2, 4, 10);
-  assert.equal(forest.pathSum(2, 4), 3 + 12 + 14 + 15);
+  assert.equal(forest.pathSum(2, 4), 13 + 12 + 14 + 15);
   assert.equal(forest.getValue(0), 1);
   assert.equal(forest.getValue(3), 14);
   assert.equal(forest.cut(1, 3), true);
   assert.equal(forest.connected(0, 4), false);
   assert.throws(() => forest.pathSum(0, 4), /disconnected/);
   assert.equal(forest.link(4, 5), true);
-  assert.equal(forest.pathSum(5, 2), 6 + 15 + 12 + 3);
+  assert.equal(forest.link(4, 1), true);
+  assert.equal(forest.pathSum(5, 2), 6 + 15 + 12 + 13);
   assert.equal(forest.link(0, 2), false, 'link must reject a cycle');
   assert.throws(() => forest.setValue(99, 1), /invalid vertex/);
   assert.throws(() => forest.pathAdd(0, 1, Infinity), /finite/);
