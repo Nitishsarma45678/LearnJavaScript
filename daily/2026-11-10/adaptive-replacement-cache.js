@@ -125,8 +125,10 @@ class AdaptiveReplacementCache {
     if (this.b2.has(key)) {
       const delta = Math.max(1, this.b1.size / this.b2.size);
       this.p = Math.max(0, this.p - delta);
-      this.b2.delete(key);
+      // Keep the B2 membership visible during REPLACE: the ARC rule uses
+      // that fact to break a tie when T1.size equals the adaptive target p.
       this._replace(key);
+      this.b2.delete(key);
       this.t2.set(key, value);
       return this;
     }
