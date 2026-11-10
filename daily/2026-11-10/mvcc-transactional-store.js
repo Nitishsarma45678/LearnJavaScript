@@ -334,7 +334,9 @@ function runTests() {
   assert.equal(ownWrites.get("temporary"), undefined);
   ownWrites.rollback();
 
-  assert.throws(() => store.begin().set(7, "bad"), /string keys/);
+  const invalid = store.begin();
+  assert.throws(() => invalid.set(7, "bad"), /string keys/);
+  invalid.rollback();
   assert.equal(store.activeSnapshots.size, 0);
 
   console.log("MVCCStore: all tests passed");
