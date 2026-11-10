@@ -260,9 +260,12 @@ function run(parser, input, { requireEOF = true } = {}) {
   if (!(parser instanceof Parser)) throw new TypeError('run() expects a Parser');
   if (typeof input !== 'string') throw new TypeError('input must be a string');
   const context = { input, memo: new Map(), stats: { hits: 0, misses: 0 } };
-  let result = parser.parse(context, 0);
-  if (result.ok && requireEOF) result = eof().parse(context, result.position);
+  const result = parser.parse(context, 0);
   if (!result.ok) throw new ParseError(input, result);
+  if (requireEOF) {
+    const end = eof().parse(context, result.position);
+    if (!end.ok) throw new ParseError(input, end);
+  }
   return {
     value: result.value,
     position: result.position,
