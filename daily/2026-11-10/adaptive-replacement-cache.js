@@ -252,7 +252,7 @@ function runTests() {
   assert.ok(adaptive.size <= 4);
   assert.ok(adaptive.inspect().B1.length + adaptive.inspect().B2.length <= 4);
 
-  let seed = 0xarc2026;
+  let seed = 0x0a7c2026;
   const random = max => {
     seed = (Math.imul(seed, 1103515245) + 12345) >>> 0;
     return seed % max;
