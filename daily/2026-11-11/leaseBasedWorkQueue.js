@@ -209,7 +209,7 @@ function runTests() {
   queue.enqueue({ task: 'first' }, { id: 'first' });
   queue.enqueue({ task: 'second' }, { id: 'second' });
   const firstLease = queue.claim('worker-a');
-  const secondLease = queue.claim('worker-b');
+  const secondLease = queue.claim('worker-b', { leaseMs: 40 });
   assert.equal(firstLease.id, 'first');
   assert.equal(secondLease.id, 'second');
   assert.equal(queue.claim('worker-c'), null);
@@ -227,7 +227,7 @@ function runTests() {
   assert.equal(queue.status('first').status, 'dead');
 
   const extended = queue.extend('second', secondLease.token, 20);
-  assert.equal(extended, 130);
+  assert.equal(extended, 160);
   clock = 125;
   assert.equal(queue.ack('second', secondLease.token), true);
   assert.deepEqual(queue.stats(), { pending: 0, leased: 0, completed: 1, dead: 1 });
