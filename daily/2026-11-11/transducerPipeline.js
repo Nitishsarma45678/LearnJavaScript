@@ -144,8 +144,8 @@ function partitionByT(keyOf) {
 /** Emit full overlapping windows; incomplete trailing windows are discarded. */
 function windowT(size, stride = 1) {
   if (!Number.isSafeInteger(size) || size < 1 ||
-      !Number.isSafeInteger(stride) || stride < 1) {
-    throw new RangeError("window size and stride must be positive integers");
+      !Number.isSafeInteger(stride) || stride < 1 || stride > size) {
+    throw new RangeError("window size and stride must be positive integers, with stride <= size");
   }
   return downstream => {
     const buffer = [];
@@ -268,6 +268,15 @@ async function runTests() {
   );
   assert.deepEqual(runs, [[1, 3], [2, 4], [5, 7], [6]]);
 
+  const firstRunOnly = transduce(
+    composeT(partitionByT(value => value % 2), takeT(1)),
+    arrayReducer,
+    [],
+    [1, 3, 2, 4, 5]
+  );
+  assert.deepEqual(firstRunOnly, [[1, 3]],
+    "early termination must not flush the completed partition twice");
+
   const windows = transduce(
     windowT(3, 2),
     arrayReducer,
@@ -288,6 +297,7 @@ async function runTests() {
 
   assert.throws(() => takeT(0), /positive/);
   assert.throws(() => windowT(2, 0), /positive/);
+  assert.throws(() => windowT(2, 3), /stride <= size/);
   assert.throws(() => transduce(mapT(x => x), arrayReducer, [], 42), /iterable/);
   console.log("transducerPipeline: all tests passed");
 }
