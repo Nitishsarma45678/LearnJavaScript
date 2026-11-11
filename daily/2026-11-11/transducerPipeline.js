@@ -119,8 +119,12 @@ function partitionByT(keyOf) {
           group.push(input);
           return accumulator;
         }
-        const next = downstream.step(accumulator, group);
+        const completedGroup = group;
+        hasGroup = false;
+        group = [];
+        const next = downstream.step(accumulator, completedGroup);
         if (isReduced(next)) return next;
+        hasGroup = true;
         groupKey = nextKey;
         group = [input];
         return next;
