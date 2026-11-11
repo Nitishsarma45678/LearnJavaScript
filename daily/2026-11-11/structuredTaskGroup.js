@@ -202,7 +202,7 @@ async function runTests() {
   );
 
   assert.throws(() => new TaskGroup({ timeoutMs: -1 }), /non-negative/);
-  assert.throws(() => new TaskGroup().run("not an array"), /array/);
+  await assert.rejects(new TaskGroup().run("not an array"), /array/);
   console.log("structuredTaskGroup: all tests passed");
 }
 
