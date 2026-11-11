@@ -248,6 +248,7 @@ class RTree {
     const index = leaf.children.findIndex(entry => entry.id === id);
     leaf.children.splice(index, 1);
     this.items.delete(id);
+    leaf.box = boxOf(leaf.children);
 
     const orphaned = [];
     for (let depth = path.length - 2; depth >= 0; depth -= 1) {
@@ -346,6 +347,14 @@ function runTests() {
   assert.equal(tree.get("p79").value.label, "point-79");
   assert.equal(tree.remove("p79"), true);
   assert.equal(tree.get("p79"), null);
+
+  const tiny = new RTree({ maxEntries: 4, minEntries: 2 });
+  tiny.insert("left", { minX: 0, minY: 0, maxX: 1, maxY: 1 });
+  tiny.insert("right", { minX: 10, minY: 10, maxX: 11, maxY: 11 });
+  tiny.remove("right");
+  assert.deepEqual(tiny.root.box, { minX: 0, minY: 0, maxX: 1, maxY: 1 },
+    "deleting from a root leaf must refresh its bounding rectangle");
+
   assert.throws(() => tree.search({ minX: 5, minY: 0, maxX: 1, maxY: 2 }), /minimums/);
   assert.throws(() => tree.insert("bad", { minX: NaN, minY: 0, maxX: 1, maxY: 1 }), /finite/);
   console.log("rTreeSpatialIndex: all tests passed");
