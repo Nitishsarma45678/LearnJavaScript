@@ -62,7 +62,10 @@ class EventStore {
     return (this.streams.get(streamId) || []).length;
   }
 
-  append(streamId, expectedVersion, events, { idempotencyKey } = {}) {
+  append(streamId, expectedVersion, events, { idempotencyKey, beforeCommit } = {}) {
+    if (beforeCommit !== undefined && typeof beforeCommit !== "function") {
+      throw new TypeError("beforeCommit must be a function");
+    }
     if (typeof streamId !== "string" || !streamId.trim()) {
       throw new TypeError("streamId must be a non-empty string");
     }
@@ -98,6 +101,9 @@ class EventStore {
     if (current.length !== expectedVersion) {
       throw new ConcurrencyError(streamId, expectedVersion, current.length);
     }
+    // Domain validation runs after idempotency and version checks but before
+    // the append, so a rejected aggregate transition cannot poison the log.
+    if (beforeCommit) beforeCommit(clone(current), clone(normalized));
 
     const appended = normalized.map((event, index) => Object.freeze({
       streamId,
@@ -202,7 +208,14 @@ class AccountRepository {
   }
 
   append(accountId, expectedVersion, events, options) {
-    const result = this.store.append(accountId, expectedVersion, events, options);
+    const result = this.store.append(accountId, expectedVersion, events, {
+      ...options,
+      beforeCommit: (_currentEvents, normalizedEvents) => {
+        const current = this.load(accountId);
+        const preview = clone(current.state);
+        for (const event of normalizedEvents) applyAccountEvent(preview, event);
+      }
+    });
     const aggregate = this.load(accountId);
     if (aggregate.version > 0 && aggregate.version % this.snapshotEvery === 0) {
       this.snapshots.put(accountId, aggregate.version, aggregate.state);
