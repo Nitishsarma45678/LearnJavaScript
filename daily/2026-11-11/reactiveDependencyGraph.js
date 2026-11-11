@@ -115,6 +115,10 @@ function createReactiveSystem() {
   function reactive(target) {
     if (target === null || typeof target !== "object") return target;
     if (proxyToRaw.has(target)) return target;
+    const prototype = Object.getPrototypeOf(target);
+    if (!Array.isArray(target) && prototype !== Object.prototype && prototype !== null) {
+      return target;
+    }
     const cached = proxyCache.get(target);
     if (cached) return cached;
 
@@ -302,14 +306,14 @@ function runTests() {
     conditionalRuns += 1;
     conditionalValue = state.flag ? state.left : state.right;
   });
-  state.left = 11;
-  assert.equal(conditionalRuns, 1, "inactive branch dependencies must be removed");
   state.flag = false;
   assert.equal(conditionalValue, 20);
-  state.left = 12;
   assert.equal(conditionalRuns, 2);
+  state.left = 12;
+  assert.equal(conditionalRuns, 2, "inactive branch dependencies must be removed");
   state.right = 21;
   assert.equal(conditionalValue, 21);
+  assert.equal(conditionalRuns, 3);
 
   const watched = reactive({ value: 0 });
   const changes = [];
@@ -351,6 +355,10 @@ function runTests() {
   stop(stopped);
   state.count += 1;
   assert.equal(stoppedRuns, 1);
+
+  const date = new Date("2026-11-11T00:00:00Z");
+  assert.equal(reactive(date), date, "built-in objects must not be wrapped in an incompatible proxy");
+  assert.equal(reactive(date).getTime(), date.getTime());
 
   stopObserver();
   console.log("reactiveDependencyGraph: all tests passed");
