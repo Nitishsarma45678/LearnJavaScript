@@ -183,8 +183,9 @@ function runTests() {
   assert.throws(() => tree.kth(v4, 0), /k must/);
   assert.throws(() => tree.insert(v4, 2), /outside/);
 
-  const branched = tree.insert(v1, 7);
-  assert.throws(() => tree.kthBetween(branched, v4, 1), /superset/);
+  const onlyNine = tree.insert(0, 9);
+  const twoLeft = tree.insert(tree.insert(0, 1), 5);
+  assert.throws(() => tree.kthBetween(onlyNine, twoLeft, 1), /superset/);
   console.log("PersistentOrderStatisticMultiset: all tests passed");
 }
 
