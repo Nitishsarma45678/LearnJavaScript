@@ -208,7 +208,10 @@ async function runTests() {
     () => collect(mergeSortedAsync([[1, 4, 2]])),
     /not sorted/
   );
-  assert.throws(() => mergeSortedAsync([42]), TypeError);
+  await assert.rejects(
+    () => collect(mergeSortedAsync([42])),
+    TypeError
+  );
 
   let closed = false;
   async function* tracked() {
