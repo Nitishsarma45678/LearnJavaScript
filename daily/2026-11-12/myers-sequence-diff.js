@@ -160,7 +160,7 @@ function runTests() {
   assert.deepEqual(myersDiff([1, 2], []).map((item) => item.type),
     ["delete", "delete"]);
   assert.deepEqual(diffText("café🙂", "cafe🙂!").map((item) => item.type),
-    ["equal", "delete", "insert", "equal", "insert"]);
+    ["equal", "equal", "equal", "delete", "insert", "equal", "insert"]);
 
   let seed = 0x71c3;
   const random = (limit) => {
