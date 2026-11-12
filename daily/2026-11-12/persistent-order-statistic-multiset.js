@@ -177,7 +177,8 @@ function runTests() {
   assert.equal(tree.countRange(v4, 4, 8), 2);
   const v5 = tree.remove(v4, 5);
   assert.deepEqual([1, 2, 3].map(k => tree.kth(v5, k)), [1, 5, 9]);
-  assert.equal(tree.kthBetween(v1, v4, 2), 9);
+  assert.equal(tree.kthBetween(v1, v4, 2), 5);
+  assert.equal(tree.kthBetween(v1, v4, 3), 9);
   assert.equal(tree.countRange(v1, -10, 100), 1);
   assert.throws(() => tree.remove(0, 5), /not present/);
   assert.throws(() => tree.kth(v4, 0), /k must/);
