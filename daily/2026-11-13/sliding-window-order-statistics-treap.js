@@ -345,7 +345,7 @@ function runTests() {
   assert.equal(window.quantile(1), 6);
   assert.equal(window.quantile(0.25), 3.75);
   assert.equal(window.quantile(0.75), 5.25);
-  window.push(6).push(6);
+  window.push(6).push(6).push(6);
   assert.deepEqual(window.values(), [6, 6, 6, 6]);
   assert.equal(window.median(), 6);
   assert.throws(() => window.quantile(1.1), RangeError);
