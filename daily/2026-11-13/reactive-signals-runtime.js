@@ -135,14 +135,13 @@ function createReactiveRuntime(options = {}) {
       subscribe(listener, immediate = false) {
         if (typeof listener !== 'function') throw new TypeError('listener must be a function');
         const observer = {
-          fn: () => listener(current),
-          dependencies: new Set(),
+          fn: () => {},
+          dependencies: new Set([dependency]),
           active: true,
           running: false,
           cleanup: null,
-          scheduler: null
+          scheduler: () => listener(current)
         };
-        observer.dependencies.add(dependency);
         dependency.subscribers.add(observer);
         if (immediate) listener(current);
         return () => {
@@ -356,11 +355,16 @@ function runTests() {
   stopCustom();
 
   const limited = createReactiveRuntime({ maxFlushRuns: 5 });
+  const trigger = limited.signal(false);
   const loop = limited.signal(0);
-  assert.throws(() => limited.effect(() => {
-    loop.value;
-    loop.update(value => value + 1);
-  }), /update loop/);
+  const stopLoop = limited.effect(() => {
+    if (trigger.value) {
+      loop.value;
+      loop.update(value => value + 1);
+    }
+  });
+  assert.throws(() => trigger.set(true), /update loop/);
+  stopLoop();
 
   console.log('ReactiveSignals: all tests passed');
 }
