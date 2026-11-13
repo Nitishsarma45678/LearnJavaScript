@@ -302,15 +302,8 @@ class AsyncEventBus {
           errors: []
         });
       }
+      this._clearSubscriptions();
     }
-
-    for (const record of Array.from(this.subscriptions.values())) {
-      record.active = false;
-      if (record.signal && record.abortListener) {
-        record.signal.removeEventListener('abort', record.abortListener);
-      }
-    }
-    this.subscriptions.clear();
 
     return new Promise(resolve => {
       this.closeWaiters.push(resolve);
@@ -319,10 +312,21 @@ class AsyncEventBus {
     });
   }
 
+  _clearSubscriptions() {
+    for (const record of Array.from(this.subscriptions.values())) {
+      record.active = false;
+      if (record.signal && record.abortListener) {
+        record.signal.removeEventListener('abort', record.abortListener);
+      }
+    }
+    this.subscriptions.clear();
+  }
+
   _notifyClosed() {
     if (!this.closed || this.active > 0 || this.queue.length > 0 || this.blocked.length > 0) {
       return;
     }
+    this._clearSubscriptions();
     for (const resolve of this.closeWaiters.splice(0)) resolve();
   }
 }
@@ -438,10 +442,12 @@ async function runTests() {
   await dropOldest.close();
 
   const draining = new AsyncEventBus({ concurrency: 1, maxQueue: 2 });
-  draining.subscribe('x', async () => {});
+  const drainedValues = [];
+  draining.subscribe('x', async value => drainedValues.push(value));
   const drainJobs = [draining.publish('x', 1), draining.publish('x', 2)];
   await draining.close({ drain: true });
   await Promise.all(drainJobs);
+  assert.deepEqual(drainedValues, [1, 2]);
   await assert.rejects(draining.publish('x', 3), /closed/);
 
   console.log('AsyncEventBus: all tests passed');
