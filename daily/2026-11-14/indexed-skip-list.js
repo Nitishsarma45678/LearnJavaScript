@@ -255,7 +255,8 @@ class IndexedSkipList {
     for (let i = 1; i < nodes.length; i++) positions.set(nodes[i], i);
 
     for (const node of nodes) {
-      for (let level = 0; level < node.forward.length; level++) {
+      const activeLevels = node === this.head ? this.level : node.forward.length;
+      for (let level = 0; level < activeLevels; level++) {
         const next = node.forward[level];
         if (next && next.forward.length <= level) {
           throw new Error('forward link points to a node without that level');
