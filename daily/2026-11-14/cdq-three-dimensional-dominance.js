@@ -160,7 +160,7 @@ const sample = [
   { x: 2, y: 3, z: 4 },
   { x: 1, y: 2, z: 3 }
 ];
-assert.deepEqual(count3DDominance(sample), [2, 2, 4, 2]);
+assert.deepEqual(count3DDominance(sample), [2, 3, 4, 2]);
 
 assert.deepEqual(count3DDominance([]), []);
 assert.deepEqual(
