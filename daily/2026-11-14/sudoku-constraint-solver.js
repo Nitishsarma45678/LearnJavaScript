@@ -262,7 +262,7 @@ function runTests() {
   }
 
   assert.throws(() => solveSudoku([[0, 0], [0, 0]]), /boxRows/);
-  assert.throws(() => solveSudoku([[0], [0]]), /square/);
+  assert.throws(() => solveSudoku([[0], [0]]), /exactly N cells/);
   console.log('Sudoku solver: all tests passed');
 }
 
