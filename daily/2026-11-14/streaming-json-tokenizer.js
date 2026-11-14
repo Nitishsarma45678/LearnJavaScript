@@ -192,7 +192,7 @@ function tokenizeChunks(chunks) {
 
 function runTests() {
   const assert = require('node:assert/strict');
-  const source = '{"name":"Ada\\\\nLovelace","active":true,"score":-1.25e+2,' +
+  const source = '{"name":"Ada\\nLovelace","active":true,"score":-1.25e+2,' +
     '"items":[0,false,null,"🙂"]}';
   const expected = tokenizeChunks([source]);
 
@@ -206,7 +206,7 @@ function runTests() {
 
   assert.equal(expected.find((token) => token.type === 'number').value, -125);
   assert.equal(expected.filter((token) => token.type === 'boolean').length, 2);
-  assert.equal(expected.find((token) => token.value === 'Ada\\nLovelace').value,
+  assert.equal(expected.find((token) => token.value === 'Ada\nLovelace').value,
     'Ada\nLovelace');
 
   const tokenizer = new JsonTokenizer();
