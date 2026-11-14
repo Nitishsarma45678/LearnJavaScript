@@ -183,10 +183,10 @@ const symbolKey = Symbol('metadata');
 const descriptorA = {};
 const descriptorB = {};
 Object.defineProperty(descriptorA, symbolKey, {
-  value: { score: 9 }, enumerable: false, writable: false
+  value: { score: 9 }, enumerable: false, writable: false, configurable: true
 });
 Object.defineProperty(descriptorB, symbolKey, {
-  value: { score: 9 }, enumerable: false, writable: false
+  value: { score: 9 }, enumerable: false, writable: false, configurable: true
 });
 assert.equal(deepEqualGraph(descriptorA, descriptorB), true);
 Object.defineProperty(descriptorB, symbolKey, {
