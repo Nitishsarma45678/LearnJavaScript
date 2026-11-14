@@ -51,6 +51,7 @@ function takeT(count) {
       if (seen >= count) return reduced(accumulator);
       seen += 1;
       const next = reducer(accumulator, value);
+      if (isReduced(next)) return next;
       return seen >= count ? reduced(next) : next;
     };
   };
@@ -205,6 +206,7 @@ const syncPipeline = composeT(
   takeT(3)
 );
 assert.deepEqual(intoArray(syncPipeline, [1, 2, 3, 4, 5, 6, 7]), [4, 8, 12]);
+assert.deepEqual(intoArray(composeT(takeT(1), takeT(1)), [9, 10]), [9]);
 
 const expanded = composeT(
   flatMapT((value) => [value, value * 10]),
