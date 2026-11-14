@@ -87,6 +87,7 @@ class VirtualEventLoop {
     this.maxMicrotasksPerCheckpoint = maxMicrotasksPerCheckpoint;
     this.errors = [];
     this.running = false;
+    this.lastMicrotasksRun = 0;
   }
 
   queueMicrotask(callback) {
@@ -171,7 +172,7 @@ class VirtualEventLoop {
     this.timerById.delete(timer.id);
     this.now = Math.max(this.now, timer.due);
     this._invoke(timer.callback, 'timer');
-    this._drainMicrotasks();
+    this.lastMicrotasksRun = this._drainMicrotasks();
     return true;
   }
 
@@ -204,6 +205,7 @@ class VirtualEventLoop {
           throw new Error('task limit exceeded (possible endlessly rescheduled timers)');
         }
         this._runOneTimer();
+        microtasksRun += this.lastMicrotasksRun;
         tasksRun++;
       }
       return { tasksRun, microtasksRun };
@@ -238,7 +240,7 @@ class VirtualEventLoop {
         }
         this._runOneTimer();
         tasksRun++;
-        microtasksRun += 0; // Per-task checkpoints are drained inside _runOneTimer.
+        microtasksRun += this.lastMicrotasksRun;
       }
       this.now = target;
       microtasksRun += this._drainMicrotasks();
