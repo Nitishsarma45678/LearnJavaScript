@@ -89,6 +89,8 @@ function count3DDominance(points) {
     }
   }
 
+  for (const group of groups) group.count = group.weight;
+
   const zCoordinates = [...new Set(groups.map((point) => point.z))]
     .sort(compareNumber);
   const zRank = new Map(zCoordinates.map((value, index) => [value, index]));
