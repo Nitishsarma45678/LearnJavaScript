@@ -41,7 +41,7 @@ class TaskScope {
     this._parentAbort = null;
 
     if (parentSignal) {
-      this._parentAbort = () => this.cancel(cancellationReason(parentSignal));
+      this._parentAbort = () => this.cancel(cancellationReason(parentSignal), 'parent');
       if (parentSignal.aborted) this._parentAbort();
       else parentSignal.addEventListener('abort', this._parentAbort, { once: true });
     }
@@ -78,7 +78,7 @@ class TaskScope {
           record.status = 'rejected';
           record.error = error;
           this.errors.push({ label, error });
-          if (this.failFast && !this.signal.aborted) this.cancel(error);
+          if (this.failFast && !this.signal.aborted) this.cancel(error, 'task-failure');
           throw error;
         }
       );
@@ -95,8 +95,11 @@ class TaskScope {
     return promise;
   }
 
-  cancel(reason = new Error('task scope cancelled')) {
-    if (!this.signal.aborted) this.controller.abort(reason);
+  cancel(reason = new Error('task scope cancelled'), kind = 'caller') {
+    if (!this.signal.aborted) {
+      this._cancelKind = kind;
+      this.controller.abort(reason);
+    }
   }
 
   async run(body) {
@@ -111,7 +114,7 @@ class TaskScope {
       value = await body(this);
     } catch (error) {
       bodyError = error;
-      this.cancel(error);
+      this.cancel(error, 'body-failure');
     }
 
     this.state = 'closing';
@@ -123,6 +126,9 @@ class TaskScope {
     this.state = 'closed';
 
     if (bodyError !== undefined) throw bodyError;
+    if (this._cancelKind === 'parent' || this._cancelKind === 'caller') {
+      throw cancellationReason(this.signal);
+    }
     if (this.errors.length > 0) {
       throw new AggregateError(
         this.errors.map((entry) => entry.error),
