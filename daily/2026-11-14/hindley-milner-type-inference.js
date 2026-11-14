@@ -222,10 +222,10 @@ function infer(expression, environment, fresh) {
     }
 
     case 'apply': {
-      const function = infer(expression.fn, environment, fresh);
+      const functionValueType = infer(expression.fn, environment, fresh);
       const argument = infer(expression.argument, environment, fresh);
       const result = fresh();
-      unify(function, functionType(argument, result));
+      unify(functionValueType, functionType(argument, result));
       return prune(result);
     }
 
