@@ -254,7 +254,7 @@ async function runTests() {
   const closed = new TaskScope();
   await closed.run(async () => {});
   assert.throws(() => closed.spawn(async () => {}), /cannot spawn/);
-  assert.throws(() => closed.run(async () => {}), /only run once/);
+  await assert.rejects(closed.run(async () => {}), /only run once/);
 
   const gate = deferred();
   assert.equal(typeof gate.resolve, 'function');
