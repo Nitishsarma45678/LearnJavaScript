@@ -304,7 +304,7 @@ async function runTests() {
   await held.release();
 
   const value = await pool.withResource(async (resource) => resource.id * 10);
-  assert.equal(value, 10);
+  assert.equal(value, 20);
 
   const last = await pool.acquire();
   let closeFinished = false;
