@@ -220,13 +220,26 @@ class BuildScheduler {
     };
 
     try {
-      const results = await Promise.all(roots.map(execute));
+      let results;
+      if (failFast) {
+        results = await Promise.all(roots.map(execute));
+      } else {
+        const settled = await Promise.allSettled(roots.map(execute));
+        const failures = settled.filter(entry => entry.status === 'rejected');
+        if (failures.length > 0) {
+          throw new AggregateError(
+            failures.map(entry => entry.reason),
+            'one or more build targets failed'
+          );
+        }
+        results = settled.map(entry => entry.value);
+      }
       return {
         results: new Map(roots.map((id, index) => [id, results[index].value])),
         stats
       };
     } catch (error) {
-      if (!controller.signal.aborted) controller.abort(error);
+      if (failFast && !controller.signal.aborted) controller.abort(error);
       await Promise.allSettled([...promises.values()]);
       throw error;
     } finally {
@@ -278,6 +291,15 @@ async function runTests() {
     }
   ]);
   await assert.rejects(failing.run('must-not-run'), /compiler failed/);
+
+  const nonFailFast = new BuildScheduler([
+    { id: 'bad-target', run: async () => { throw new Error('expected failure'); } },
+    { id: 'independent-target', run: async () => 42 }
+  ]);
+  await assert.rejects(
+    nonFailFast.run(['bad-target', 'independent-target'], { failFast: false }),
+    error => error instanceof AggregateError && /one or more build targets failed/.test(error.message)
+  );
 
   const cyclic = new BuildScheduler([
     { id: 'a', deps: ['b'], run: async () => 1 },
