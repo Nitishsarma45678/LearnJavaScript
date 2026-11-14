@@ -213,7 +213,7 @@ const expanded = composeT(
   filterT((value) => value % 2 === 0),
   takeT(4)
 );
-assert.deepEqual(intoArray(expanded, [1, 2, 3, 4]), [10, 2, 20, 4]);
+assert.deepEqual(intoArray(expanded, [1, 2, 3, 4]), [10, 2, 20, 30]);
 
 let syncClosed = false;
 function* syncSource() {
