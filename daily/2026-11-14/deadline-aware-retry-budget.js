@@ -325,7 +325,7 @@ async function runTests() {
     sleep: async (ms) => { delays.push(ms); clock += ms; }
   }).catch((error) => error);
   assert.equal(retryAfterResult.message, 'busy');
-  assert.equal(clock, 0, 'a Retry-After delay that exceeds maxAttempts is not slept');
+  assert.equal(clock, 25, 'the server-provided Retry-After delay is honored');
 
   clock = 0;
   const budget = new RetryBudget({
