@@ -68,9 +68,9 @@ function abortReason(signal) {
 }
 
 function nextWithAbort(iterator, signal) {
+  if (signal && signal.aborted) return Promise.reject(abortReason(signal));
   const pending = Promise.resolve().then(() => iterator.next());
   if (!signal) return pending;
-  if (signal.aborted) return Promise.reject(abortReason(signal));
 
   return new Promise((resolve, reject) => {
     let settled = false;
