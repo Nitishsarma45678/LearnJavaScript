@@ -220,7 +220,7 @@ async function runTests() {
   for await (const value of mergeSortedAsync([[], asyncValues([])])) empty.push(value);
   assert.deepEqual(empty, []);
   await assert.rejects(async () => {
-    for await (const value of mergeSortedAsync([[1, 2]], {
+    for await (const value of mergeSortedAsync([[1, 2], [3, 4]], {
       compare: () => NaN
     })) void value;
   }, /finite number/);
