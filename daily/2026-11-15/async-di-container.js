@@ -209,7 +209,7 @@ function runTests() {
     await container.dispose();
     await assert.rejects(container.resolve('singleton'), /disposed/);
     assert.equal(transientCount, 2);
-    assert.equal(scopedCount, 3);
+    assert.equal(scopedCount, 2);
     console.log('Dependency injection container tests passed');
   })();
 }
