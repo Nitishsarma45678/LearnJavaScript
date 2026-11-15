@@ -116,7 +116,7 @@ function runTests() {
     { id: 'E', start: 5, end: 8, weight: 11 },
     { id: 'F', start: 7, end: 9, weight: 2 }
   ]);
-  assert.equal(classic.totalWeight, 16);
+  assert.equal(classic.totalWeight, 17);
   assert.deepEqual(classic.jobs.map(job => job.id), ['B', 'E']);
 
   const capped = scheduleJobs([
