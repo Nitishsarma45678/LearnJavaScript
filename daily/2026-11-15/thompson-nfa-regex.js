@@ -82,7 +82,7 @@ class RegexParser {
     if (['d', 'w', 's'].includes(lower)) {
       return { type: 'class', ranges: [], sets: [lower], negate: ch !== lower };
     }
-    const escaped = ({ n: '\\n', r: '\\r', t: '\\t' })[ch];
+    const escaped = ({ n: '\n', r: '\r', t: '\t' })[ch];
     return { type: 'literal', value: escaped || ch };
   }
 
@@ -96,7 +96,7 @@ class RegexParser {
         if (ch !== lower) this.fail('Uppercase character-class escapes are not supported inside []');
         return { kind: 'set', value: lower };
       }
-      const value = ({ n: '\\n', r: '\\r', t: '\\t' })[ch] || ch;
+      const value = ({ n: '\n', r: '\r', t: '\t' })[ch] || ch;
       return { kind: 'literal', value };
     }
     return { kind: 'literal', value: this.take() };
@@ -231,13 +231,13 @@ function compileRegex(pattern) {
       matched = (point >= 48 && point <= 57) || (point >= 65 && point <= 90) ||
         (point >= 97 && point <= 122) || point === 95;
     }
-    if (!matched && instruction.sets.includes('s')) matched = /\\s/u.test(character);
+    if (!matched && instruction.sets.includes('s')) matched = /\s/u.test(character);
     return instruction.negate ? !matched : matched;
   }
 
   function accepts(instruction, character) {
     if (instruction.op === 'char') return instruction.value === character;
-    if (instruction.op === 'any') return !/[\\n\\r\\u2028\\u2029]/u.test(character);
+    if (instruction.op === 'any') return !/[\n\r\u2028\u2029]/u.test(character);
     if (instruction.op === 'class') return classMatches(instruction, character);
     return false;
   }
