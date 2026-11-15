@@ -134,7 +134,7 @@ function runTests() {
     { id: 'four', start: 6, end: 7, weight: 5 }
   ], { cooldown: 1 });
   assert.equal(withCooldown.totalWeight, 32);
-  assert.deepEqual(withCooldown.jobs.map(job => job.id), ['three', 'four']);
+  assert.deepEqual(withCooldown.jobs.map(job => job.id), ['one', 'three', 'four']);
 
   const negative = scheduleJobs([
     { id: 'loss', start: 0, end: 1, weight: -10 },
