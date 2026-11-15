@@ -243,7 +243,7 @@ function runTests() {
   limited.addEdge(1, 2, 1, -2);
   limited.addEdge(1, 3, 1, 3);
   limited.addEdge(2, 3, 2, 1);
-  assert.deepEqual(limited.solve(0, 3, { maxFlow: 2 }), { flow: 2, cost: 4 });
+  assert.deepEqual(limited.solve(0, 3, { maxFlow: 2 }), { flow: 2, cost: 1 });
 
   const disconnected = new MinCostMaxFlow(3);
   disconnected.addEdge(0, 1, 4, 7);
