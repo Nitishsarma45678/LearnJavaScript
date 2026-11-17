@@ -106,7 +106,7 @@ function equal(a, b, state) {
     return equalProperties(a, b, state);
   }
   if (a instanceof Set) {
-    if (!(b instanceof Set) || a.size !== b.size)) return false;
+    if (!(b instanceof Set) || a.size !== b.size) return false;
     if (!matchUnordered([...a], [...b], state, (x, y, trial) => equal(x, y, trial))) return false;
     return equalProperties(a, b, state);
   }
