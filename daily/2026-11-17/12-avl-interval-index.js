@@ -216,18 +216,19 @@ function runTests() {
     return seed / 0x100000000;
   };
 
+  const randomizedIndex = new AVLIntervalIndex();
   const model = new Map();
   for (let step = 0; step < 600; step++) {
     if (random() < 0.62 || model.size === 0) {
       const id = "r" + step;
       const start = Math.floor(random() * 100) - 30;
       const end = start + Math.floor(random() * 18);
-      index.insert(id, start, end);
+      randomizedIndex.insert(id, start, end);
       model.set(id, { id, start, end });
     } else {
       const ids = Array.from(model.keys());
       const id = ids[Math.floor(random() * ids.length)];
-      assert.equal(index.remove(id), true);
+      assert.equal(randomizedIndex.remove(id), true);
       model.delete(id);
     }
 
@@ -236,8 +237,8 @@ function runTests() {
     const expected = Array.from(model.values())
       .filter((x) => x.start <= to && x.end >= from)
       .sort(compareInterval);
-    assert.deepEqual(index.query(from, to), expected);
-    index.validate();
+    assert.deepEqual(randomizedIndex.query(from, to), expected);
+    randomizedIndex.validate();
   }
 
   console.log("AVL interval index tests passed");
