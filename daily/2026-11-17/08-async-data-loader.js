@@ -46,7 +46,7 @@ function createDataLoader(batchLoadFn, options = {}) {
     const keys = entries.map(entry => entry.key);
     Promise.resolve().then(() => batchLoadFn(keys)).then(values => {
       if (!Array.isArray(values) || values.length !== entries.length) {
-        throw new TypeError("Batch function must return an array of length ${entries.length}`);
+        throw new TypeError("Batch function must return an array of length " + entries.length);
       }
       values.forEach((value, index) => {
         const entry = entries[index];
