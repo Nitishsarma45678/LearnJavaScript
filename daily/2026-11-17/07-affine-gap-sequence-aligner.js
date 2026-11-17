@@ -69,7 +69,7 @@ function alignGlobal(a, b, options = {}) {
 
       const fromY = best([Y[i][j - 1] + gapExtend, M[i][j - 1] + gapOpen, X[i][j - 1] + gapOpen]);
       Y[i][j] = fromY.score;
-      pY[e][j] = [2, 0, 1][fromY.state];
+      pY[i][j] = [2, 0, 1][fromY.state];
     }
   }
 
