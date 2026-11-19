@@ -80,8 +80,8 @@ function runTests() {
     { id: 'F', start: 7, end: 9, profit: 2 }
   ];
   const result = weightedIntervalScheduling(jobs);
-  assert.equal(result.maxProfit, 16);
-  assert.deepEqual(result.jobs.map((job) => job.id), ['A', 'E']);
+  assert.equal(result.maxProfit, 17);
+  assert.deepEqual(result.jobs.map((job) => job.id), ['B', 'E']);
 
   const touching = weightedIntervalScheduling([
     { id: 1, start: 0, end: 2, profit: 3 },
