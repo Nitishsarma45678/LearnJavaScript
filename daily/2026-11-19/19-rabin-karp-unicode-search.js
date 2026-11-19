@@ -71,7 +71,7 @@ function runTests() {
 
   // With this tiny modulus, different two-character strings collide.
   // Verification must prevent the collision from being reported as a match.
-  assert.deepEqual(rabinKarp('ab', 'ba', { base: 2n, modulus: 2n }), []);
+  assert.deepEqual(rabinKarp('ab', 'ba', { base: 1n, modulus: 2n }), []);
 
   assert.throws(() => rabinKarp(123, '2'), /strings/);
   assert.throws(() => rabinKarp('abc', 'a', { modulus: 1n }), /modulus/);
