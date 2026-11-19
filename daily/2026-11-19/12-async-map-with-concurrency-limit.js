@@ -92,7 +92,7 @@ async function runTests() {
   );
 
   assert.deepEqual(await mapLimit([], 3, async (value) => value), []);
-  assert.throws(() => mapLimit([1], 0, async (value) => value), /limit/);
+  await assert.rejects(mapLimit([1], 0, async (value) => value), /limit/);
 }
 
 if (require.main === module) {
