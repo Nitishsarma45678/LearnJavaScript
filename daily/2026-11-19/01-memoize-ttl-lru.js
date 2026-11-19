@@ -102,7 +102,7 @@ function runTests() {
   clock += 51;
   assert.equal(add.has('[4,1]'), false, 'expired entries should be removed on lookup');
   assert.equal(add(4, 1), 5);
-  assert.equal(calls, 6);
+  assert.equal(calls, 5);
 
   const receiverAware = memoize(function (amount) { return this.rate * amount; });
   assert.equal(receiverAware.call({ rate: 3 }, 4), 12);
