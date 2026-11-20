@@ -42,7 +42,7 @@ assert.deepEqual(matcher.feed("aba"), [0, 2]);
 assert.equal(matcher.charactersProcessed, 5);
 const repeated = createKMPMatcher("aaaa");
 assert.deepEqual(repeated.feed("aa"), []);
-assert.deepEqual(repeated.feed("aaaaa"), [0, 1, 2]);
+assert.deepEqual(repeated.feed("aaaa"), [0, 1, 2]);
 const absent = createKMPMatcher("xyz");
 assert.deepEqual(absent.feed("xy"), []);
 assert.deepEqual(absent.feed("zz"), []);
