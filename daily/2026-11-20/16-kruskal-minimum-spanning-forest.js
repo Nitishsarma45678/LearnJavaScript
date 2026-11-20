@@ -41,7 +41,7 @@ const graph = [
   [0,1,4],[0,2,3],[1,2,1],[1,3,2],[2,3,4],[3,4,2],[4,5,6]
 ];
 const result = kruskal(6, graph);
-assert.equal(result.totalWeight, 12);
+assert.equal(result.totalWeight, 14);
 assert.equal(result.edges.length, 5);
 assert.equal(result.components, 1);
 const forest = kruskal(4, [[0,1,-2],[2,3,5]]);
