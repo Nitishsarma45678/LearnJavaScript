@@ -113,7 +113,7 @@ class Rope {
 }
 
 const source = Rope.from("the quick brown fox");
-const edited = source.insert(4, "very ").delete(10, 6);
+const edited = source.insert(4, "very ").delete(9, 6);
 assert.equal(source.toString(), "the quick brown fox"); // persistent original
 assert.equal(edited.toString(), "the very brown fox");
 assert.equal(source.slice(4, 9), "quick");
