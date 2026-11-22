@@ -24,7 +24,8 @@ function myersDistance(pattern, text) {
   let negative = 0;
   let score = m;
 
-  for (const character of text) {
+  for (let index = 0; index < text.length; index++) {
+    const character = text[index];
     const equal = equality.get(character) || 0;
     const vertical = equal | negative;
     const horizontal = (((equal & positive) + positive) ^ positive) | equal;
