@@ -22,6 +22,7 @@ function maximumSubarrayOneDeletion(values) {
   let best = keep;
 
   const better = (a, b) => {
+    if (!a) return b;
     if (!b) return a;
     if (a.sum !== b.sum) return a.sum > b.sum ? a : b;
     const aLength = a.end - a.start + 1;
