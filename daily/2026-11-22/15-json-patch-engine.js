@@ -55,6 +55,16 @@ function addAt(root, tokens, value) {
   else parent[key] = clone(value);
   return root;
 }
+function replaceAt(root, tokens, value) {
+  if (!tokens.length) return clone(value);
+  const { parent, key } = parentAt(root, tokens);
+  if (Array.isArray(parent)) parent[arrayIndex(key, parent.length)] = clone(value);
+  else {
+    if (!Object.prototype.hasOwnProperty.call(parent, key)) throw new RangeError("path does not exist");
+    parent[key] = clone(value);
+  }
+  return root;
+}
 function removeAt(root, tokens) {
   if (!tokens.length) return undefined;
   const { parent, key } = parentAt(root, tokens);
@@ -84,7 +94,7 @@ function applyPatch(document, operations) {
       }
       case "replace":
         getAt(result, path);
-        result = addAt(result, path, operation.value);
+        result = replaceAt(result, path, operation.value);
         break;
       case "copy": {
         const value = clone(getAt(result, decodePointer(operation.from)));
@@ -125,6 +135,10 @@ assert.equal(updated.name, "Grace");
 assert.deepEqual(updated.tags, ["logic", "math", "computing"]);
 assert.equal(updated.copied, 1);
 assert.equal(original.name, "Ada");
+const arrayReplaced = applyPatch({ items: ["a", "b"] }, [
+  { op: "replace", path: "/items/1", value: "c" }
+]);
+assert.deepEqual(arrayReplaced, { items: ["a", "c"] });
 assert.throws(() => applyPatch(original, [{ op: "test", path: "/name", value: "wrong" }]), /test operation failed/);
 assert.throws(() => decodePointer("/bad~2escape"), TypeError);
 console.log("JSON Patch tests passed");
