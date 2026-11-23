@@ -21,8 +21,13 @@ function tokenize(pattern) {
       tokens.push({ type: "any" });
     } else if (ch === "*") {
       const recursive = chars[i + 1] === "*";
-      if (recursive) i += 1;
-      while (chars[i + 1] === "*") i += 1;
+      if (recursive) {
+        i += 1;
+        while (chars[i + 1] === "*") i += 1;
+        // A globstar followed by slash also consumes that slash, allowing **/ to
+        // match zero directory segments (for example, a/**/b matches a/b).
+        if (chars[i + 1] === "/") i += 1;
+      }
       tokens.push({ type: "star", recursive });
     } else if (ch === "[") {
       let end = i + 1;
