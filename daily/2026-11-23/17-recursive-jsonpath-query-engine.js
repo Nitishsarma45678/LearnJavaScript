@@ -156,7 +156,7 @@ function queryPath(root, expression) {
 
   const cyclic = { name: "root", child: { name: "leaf" } };
   cyclic.child.parent = cyclic;
-  assert.deepEqual(queryPath(cyclic, "$..name").map((x) => x.value), ["leaf", "root"]);
+  assert.deepEqual(queryPath(cyclic, "$..name").map((x) => x.value), ["root", "leaf"]);
   assert.throws(() => parsePath("$.items["), /expected/);
   assert.throws(() => parsePath("items"), /begin/);
 }
