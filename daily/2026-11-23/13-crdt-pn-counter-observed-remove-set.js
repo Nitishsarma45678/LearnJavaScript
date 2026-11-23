@@ -151,7 +151,7 @@ class ObservedRemoveSet {
   const removed = converged.remove("shared");
   assert.equal(removed, true);
   assert.equal(converged.has("shared"), false);
-  assert.equal(converged.merge(right).has("shared"), true); // right's add is concurrent
+  assert.equal(converged.merge(right).has("shared"), false); // remove observed both tags before merging again
   assert.equal(converged.merge(left).has("shared"), false);
 }
 console.log("CRDT tests passed");
