@@ -12,7 +12,8 @@ function replaceGraphNode(root, target, replacement) {
   let targetFound = false;
 
   function visit(value) {
-    if (value === null || (typeof value !== 'object' && typeof value !== 'function')) return value;
+    if (value === null || typeof value !== 'object') return value; // functions remain callable atomic references
+    if (value instanceof Date || value instanceof Map || value instanceof Set || value instanceof RegExp || ArrayBuffer.isView(value)) return value;
     if (value === target) {
       targetFound = true;
       return replacement;
@@ -51,10 +52,15 @@ assert.equal(updated.label, 'root');
 const untouched = { value: 1 };
 assert.equal(replaceGraphNode(untouched, { value: 2 }, { value: 3 }), untouched);
 const proto = { kind: 'record' };
-const instance = Object.assign(Object.create(proto), { ref: shared });
+const method = () => 42;
+const timestamp = new Date(0);
+const instance = Object.assign(Object.create(proto), { ref: shared, method, timestamp });
 const rewrittenInstance = replaceGraphNode(instance, shared, replacement);
 assert.equal(Object.getPrototypeOf(rewrittenInstance), proto);
 assert.equal(rewrittenInstance.ref, replacement);
+assert.equal(rewrittenInstance.method, method);
+assert.equal(rewrittenInstance.method(), 42);
+assert.equal(rewrittenInstance.timestamp, timestamp);
 console.log('Object-graph rewrite examples passed.');
 
 module.exports = { replaceGraphNode };
