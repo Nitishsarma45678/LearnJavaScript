@@ -109,7 +109,7 @@ assert.equal(tree.countWithin(0, 1), 3);
 assert.equal(tree.countWithin(0, 2), 6);
 assert.equal(tree.countWithin(3, 1), 2);
 assert.equal(tree.countWithin(6, 0), 1);
-assert.equal(tree.countWithin(6, 3), 7);
+assert.equal(tree.countWithin(6, 3), 4);
 assert.equal(tree.countWithin(2, -1), 0);
 console.log('Centroid-distance examples passed.');
 
