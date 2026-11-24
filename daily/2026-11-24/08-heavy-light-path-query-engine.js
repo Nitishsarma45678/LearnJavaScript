@@ -97,7 +97,7 @@ class HeavyLightTree {
 }
 
 const hld = new HeavyLightTree([1,2,3,4,5,6], [[0,1],[0,2],[1,3],[1,4],[2,5]]);
-assert.equal(hld.pathSum(3, 5), 15); // 4 + 2 + 1 + 3 + 6
+assert.equal(hld.pathSum(3, 5), 16); // 4 + 2 + 1 + 3 + 6
 hld.update(1, 20);
 assert.equal(hld.pathSum(3, 5), 33);
 assert.equal(hld.pathSum(4, 4), 5);
