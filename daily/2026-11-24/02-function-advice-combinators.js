@@ -62,7 +62,7 @@ const calculate = composeAdvice(
   })
 );
 assert.equal(calculate(2, 3), 10);
-assert.deepEqual(events, ['before-outer', 'around-enter', 'target', 'after-inner', 'around-exit']);
+assert.deepEqual(events, ['before-outer', 'around-enter', 'target', 'around-exit', 'after-inner']);
 
 (async () => {
   const asyncFn = after(async value => value * 2, result => events.push('async:' + result));
