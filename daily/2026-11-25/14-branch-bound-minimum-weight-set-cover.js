@@ -49,14 +49,11 @@ function minimumWeightedSetCover(universe, sets) {
     }
     if (cost + lowerBound() >= bestCost) return;
 
-    let pivot = -1, options = null;
+    let options = null;
     for (const element of elements.keys()) {
       if (covered.has(element)) continue;
       const available = byElement[element].filter(({ candidateIndex }) => !selected.has(candidateIndex));
-      if (!options || available.length < options.length) {
-        pivot = element;
-        options = available;
-      }
+      if (!options || available.length < options.length) options = available;
     }
     if (!options || !options.length) return;
 
@@ -84,8 +81,8 @@ if (require.main === module) {
     { id: 'cd', cost: 2, elements: ['c', 'd'] },
     { id: 'ad', cost: 5, elements: ['a', 'd'] }
   ]);
-  assert.equal(result.cost, 4);
-  assert.deepEqual(new Set(result.setIds), new Set(['bc', 'ad'])); // cost 7? See fixture below.
+  assert.equal(result.cost, 5);
+  assert.deepEqual(new Set(result.setIds), new Set(['ab', 'cd']));
   assert.deepEqual(minimumWeightedSetCover([], []), { cost: 0, setIds: [] });
   assert.equal(minimumWeightedSetCover(['x'], [{ cost: 1, elements: [] }]), null);
   assert.throws(() => minimumWeightedSetCover(['x'], [{ cost: 0, elements: ['x'] }]), RangeError);
