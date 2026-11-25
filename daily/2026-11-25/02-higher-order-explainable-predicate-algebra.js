@@ -7,6 +7,7 @@ const pass = () => ({ ok: true, issues: [] });
 const fail = (path, message, actual) => ({ ok: false, issues: [{ path, message, actual }] });
 
 function atPath(value, path) {
+  if (path === '') return value;
   return path.split('.').reduce((current, key) =>
     current == null ? undefined : current[key], value);
 }
@@ -66,6 +67,8 @@ if (require.main === module) {
   );
 
   assert.equal(userRule({ profile: { name: 'Ada' }, age: 31, role: 'admin' }).ok, true);
+  assert.equal(userRule({ profile: { name: 'Ada' }, age: 31, role: 'admin', nickname: 'Ace' }).ok, true);
+  assert.equal(userRule({ profile: { name: 'Ada' }, age: 31, role: 'admin', nickname: 42 }).ok, false);
   const invalid = userRule({ profile: { name: 'Al' }, age: 12, role: 'root' });
   assert.equal(invalid.ok, false);
   assert.equal(invalid.issues.length, 3);
@@ -74,7 +77,7 @@ if (require.main === module) {
   const first = () => { calls++; return pass(); };
   const second = () => { calls++; return fail('x', 'no'); };
   assert.equal(anyOf(first, second)({}).ok, true);
-  assert.equal(calls, 1); // anyOf stops on its first success.
+  assert.equal(calls, 1);
   assert.equal(negate(field('enabled', Boolean, 'enabled'))({ enabled: false }).ok, true);
   console.log('predicate algebra: all tests passed');
 }
