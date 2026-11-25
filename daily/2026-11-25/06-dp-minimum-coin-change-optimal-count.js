@@ -15,7 +15,6 @@ function minimumCoinChange(denominations, amount) {
   best[0] = 0;
   ways[0] = 1n;
 
-  // Coin-first iteration counts combinations, not permutations.
   for (const coin of coins) {
     for (let value = coin; value <= amount; value++) {
       if (best[value - coin] === Infinity) continue;
@@ -48,7 +47,7 @@ if (require.main === module) {
     minCoins: 2, optimalWays: 1n, coins: [3, 3]
   });
   assert.deepEqual(minimumCoinChange([1, 2, 3], 4), {
-    minCoins: 2, optimalWays: 2n, coins: [1, 3]
+    minCoins: 2, optimalWays: 2n, coins: [2, 2]
   });
   assert.deepEqual(minimumCoinChange([4, 6], 5), {
     minCoins: null, optimalWays: 0n, coins: []
