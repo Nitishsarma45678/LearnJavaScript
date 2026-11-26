@@ -84,7 +84,7 @@ const result = stableMatching(men, women);
 assert.deepEqual(result.pairs, [[0, 1], [1, 0]]);
 assert.equal(isStable(men, women, result), true);
 assert.equal(isStable([[0, 1], [0, 1]], [[0, 1], [1, 0]], {
-  receiverOf: [0, 1], proposerOf: [0, 1]
+  receiverOf: [1, 0], proposerOf: [1, 0]
 }), false);
 assert.throws(() => stableMatching([[0, 0]], [[0]]), TypeError);
 assert.deepEqual(stableMatching([], []).pairs, []);
