@@ -50,7 +50,10 @@ function threeWayMerge(base, ours, theirs) {
     if (equal(t, b)) return clone(o);
 
     if ([b, o, t].every((value) => value === MISSING || isPlainObject(value))) {
-      const result = Object.create(null);
+      const prototype = b !== MISSING && isPlainObject(b) ? Object.getPrototypeOf(b) :
+        o !== MISSING && isPlainObject(o) ? Object.getPrototypeOf(o) :
+        t !== MISSING && isPlainObject(t) ? Object.getPrototypeOf(t) : null;
+      const result = Object.create(prototype);
       const keys = new Set();
       for (const value of [b, o, t]) {
         if (value !== MISSING) for (const key of Reflect.ownKeys(value)) keys.add(key);
