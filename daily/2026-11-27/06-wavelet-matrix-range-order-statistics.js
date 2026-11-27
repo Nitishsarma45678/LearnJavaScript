@@ -81,7 +81,7 @@ class WaveletMatrix {
 const assert = require('node:assert/strict');
 const matrix = new WaveletMatrix([7, 1, 9, 3, 3, 12, 0]);
 assert.equal(matrix.kth(1, 6, 0), 1);
-assert.equal(matrix.kth(1, 6, 3), 7);
+assert.equal(matrix.kth(1, 6, 3), 9);
 assert.equal(matrix.kth(0, 7, 6), 12);
 assert.equal(matrix.countLessThan(1, 6, 4), 3);
 assert.equal(matrix.countLessThan(0, 7, 8), 5);
