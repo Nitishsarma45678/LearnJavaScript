@@ -50,7 +50,7 @@ function rectangleUnionArea(rectangles) {
 const assert = require('node:assert/strict');
 assert.equal(rectangleUnionArea([[0, 0, 2, 2]]), 4);
 assert.equal(rectangleUnionArea([[0, 0, 2, 2], [1, 1, 3, 3]]), 7);
-assert.equal(rectangleUnionArea([[0, 0, 4, 1], [1, -1, 2, 2]]), 7);
+assert.equal(rectangleUnionArea([[0, 0, 4, 1], [1, -1, 2, 2]]), 6);
 assert.equal(rectangleUnionArea([[0, 0, 1, 1], [1, 0, 2, 1]]), 2);
 assert.equal(rectangleUnionArea([]), 0);
 console.log('Rectangle union area tests passed');
