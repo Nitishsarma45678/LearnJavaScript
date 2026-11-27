@@ -24,7 +24,10 @@ function createVersionedStore(initial = {}) {
       get(key) {
         assertOpen();
         reads.add(key);
-        if (writes.has(key)) return writes.get(key);
+        if (writes.has(key)) {
+          const value = writes.get(key);
+          return value === DELETE ? undefined : value;
+        }
         return base.get(key);
       },
       has(key) {
@@ -107,6 +110,11 @@ assert.equal(left.commit().ok, true);
 assert.equal(right.commit().ok, true, 'disjoint writes can both commit');
 assert.deepEqual(store.snapshot(1), { balance: 80, status: 'open' });
 assert.equal(store.read('note'), 'audited');
+const removal = store.begin();
+removal.delete('status');
+assert.equal(removal.get('status'), undefined);
+assert.equal(removal.has('status'), false);
+assert.equal(removal.commit().ok, true);
 console.log('MVCC store tests passed');
 
 module.exports = { createVersionedStore };
